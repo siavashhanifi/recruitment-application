@@ -2,7 +2,7 @@
 
 class PostController {
     register({ request, response }) {
-        const request.all();
+        const params = request.all();
         console.log(params['email'] + params['password']);
     }
     login({ request, response }) {
