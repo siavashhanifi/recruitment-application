@@ -39,7 +39,7 @@ public class RequestController {
 
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody void processMessage(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
-		System.out.println("hej kuken");
+		applicantService.login(userLoginCredentials);
 	}
 	
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
