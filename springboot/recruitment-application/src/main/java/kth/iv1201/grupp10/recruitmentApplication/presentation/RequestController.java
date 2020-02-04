@@ -1,6 +1,7 @@
 package kth.iv1201.grupp10.recruitmentApplication.presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,14 +39,16 @@ public class RequestController {
 	}
 
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
-	public @ResponseBody void processMessage(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
-		applicantService.login(userLoginCredentials);
-		System.out.println(userLoginCredentials.getEmail() + " " + userLoginCredentials.getPassword());
+	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
+		boolean loginSuccessful = applicantService.validCredentials(userLoginCredentials);
+		if(loginSuccessful)
+			return "{\"login-success\" : \"true\"}";
+		else
+			return "{\"login-success\" : \"false\"}";
 	}
 	
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
 	public @ResponseBody void processMessage(@RequestBody User user) throws Exception{
-		System.out.println(user.getEmail() + " " + user.getName());
 		applicantService.register(user);
 	}
 

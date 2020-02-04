@@ -21,15 +21,15 @@ public class Authenticator {
 	@Autowired
 	private UserRepository userRepository;
 
-	public void authenticate(UserLoginCredentials userLoginCredentials) {
+	public boolean validCredentials(UserLoginCredentials userLoginCredentials) {
 		String email = userLoginCredentials.getEmail();
 		String password = userLoginCredentials.getPassword();
 		UserEntity userEntity = userRepository.findByEmail(email);
 		if(emailRegistered(email)) {
 			if(password.compareTo(userEntity.getPassword()) == 0)
-				System.out.println("LOGGED IN");
+				return true;
 		}
-		System.out.println("Wrong Credentials");
+		return false;
 	}
 	
 	private boolean emailRegistered(String email) {
