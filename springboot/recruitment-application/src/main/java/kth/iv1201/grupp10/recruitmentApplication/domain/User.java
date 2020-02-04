@@ -2,11 +2,11 @@ package kth.iv1201.grupp10.recruitmentApplication.domain;
 
 import org.springframework.stereotype.Component;
 
-@Component("user")
+@Component
 public class User {
 	private String name;
 	private String surname;
-	private int ssn;
+	private String ssn;
 	private String email;
 	private String password;
 	private int role_id;
@@ -38,13 +38,13 @@ public class User {
 	/**
 	 * @return the ssn
 	 */
-	public int getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
 	/**
 	 * @param ssn the ssn to set
 	 */
-	public void setSsn(int ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
 	/**

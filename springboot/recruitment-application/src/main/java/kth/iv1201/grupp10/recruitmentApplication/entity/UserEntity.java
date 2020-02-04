@@ -17,12 +17,15 @@ public class UserEntity {
 	private int person_id;
 	private String name;
 	private String surname;
-	private int ssn;
+	private String ssn;
 	private String email;
 	private String password;
 	private int role_id;
 	private String username;
 	
+	public UserEntity() {
+
+	}
 	
 	public UserEntity(User user) {
 		this.name = user.getName();
@@ -60,13 +63,13 @@ public class UserEntity {
 	/**
 	 * @return the ssn
 	 */
-	public int getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
 	/**
 	 * @param ssn the ssn to set
 	 */
-	public void setSsn(int ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
 	/**

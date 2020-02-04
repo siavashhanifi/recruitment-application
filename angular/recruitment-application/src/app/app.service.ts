@@ -18,7 +18,7 @@ export class AppService {
       password : credentials.password
     };
 
-    this.http.post('/api/auth/login', {headers}).subscribe(response => {
+    this.http.post('/api/auth/login', credentials).subscribe(response => {
       if (response) {
         this.authenticated = true;
       } else {
@@ -40,7 +40,7 @@ export class AppService {
       username : credentials.username
     };
 
-    this.http.post('/api/auth/register', {headers}).subscribe(response => {
+    this.http.post('/api/auth/register', credentials).subscribe(response => {
       if (response) {
         this.registred = true;
       } else {
