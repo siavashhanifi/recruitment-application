@@ -40,11 +40,13 @@ public class RequestController {
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody void processMessage(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
 		applicantService.login(userLoginCredentials);
+		System.out.println(userLoginCredentials.getEmail() + " " + userLoginCredentials.getPassword());
 	}
 	
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
 	public @ResponseBody void processMessage(@RequestBody User user) throws Exception{
-		applicantService.register(user);
+		System.out.println(user.getEmail() + " " + user.getName());
+		//applicantService.register(user);
 	}
 
 
