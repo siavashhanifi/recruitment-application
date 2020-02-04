@@ -16,7 +16,7 @@ export class AppService {
       authorization : 'Basic' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    this.http.post('api/auth/login', {headers}).subscribe(response => {
+    this.http.post('/api/auth/login', {headers}).subscribe(response => {
       if (response) {
         this.authenticated = true;
       } else {
@@ -36,7 +36,7 @@ export class AppService {
         + credentials.password)
     } : {});
 
-    this.http.post('register', {headers}).subscribe(response => {
+    this.http.post('/api/auth/register', {headers}).subscribe(response => {
       if (response) {
         this.registred = true;
       } else {
