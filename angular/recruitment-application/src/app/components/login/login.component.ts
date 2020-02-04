@@ -1,19 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { AppService } from '../../app.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  private password: string;
-  private userName: string;
-  private userService: UserService;
+  credentials = {username: '', password: ''};
 
-  private loginUser() {
-    this.userService.userLogin(this.password, this.userName);
+  constructor(private app: AppService, private http: HttpClient, private router: Router) {}
+
+  ngOnInit() {
   }
 
+  login() {
+    this.app.authenticate(this.credentials, () => {
+        this.router.navigateByUrl('');
+    });
+    return false;
+  }
 }

@@ -1,21 +1,17 @@
-import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  constructor(private app: AppService) { }
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  ngOnInit() {
+  }
 
+  authenticated() { return this.app.authenticated; }
 }
