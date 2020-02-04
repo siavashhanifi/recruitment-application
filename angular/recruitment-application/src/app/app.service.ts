@@ -19,11 +19,10 @@ export class AppService {
     };
 
     this.http.post('/api/auth/login', credentials).subscribe(response => {
-      if (response) {
-        this.authenticated = true;
-      } else {
-        this.authenticated = false;
-      }
+      console.log(response);
+      console.log(response['login-success']);
+      this.authenticated = response['login-success'];
+
       return callback && callback();
     });
   }

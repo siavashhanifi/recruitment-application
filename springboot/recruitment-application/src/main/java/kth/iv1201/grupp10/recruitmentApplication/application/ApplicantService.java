@@ -25,8 +25,8 @@ public class ApplicantService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public void login(UserLoginCredentials userLoginCredentials) {
-		this.authenticator.authenticate(userLoginCredentials);
+	public boolean validCredentials(UserLoginCredentials userLoginCredentials) {
+		return this.authenticator.validCredentials(userLoginCredentials);
 	}
 	
 	public void register(User user) {
