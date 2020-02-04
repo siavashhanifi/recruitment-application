@@ -12,9 +12,13 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   authenticate(credentials, callback) {
-    const headers = new HttpHeaders(credentials ? {
+    /*const headers = new HttpHeaders(credentials ? {
       authorization : 'Basic' + btoa(credentials.username + ':' + credentials.password)
-    } : {});
+    } : {});*/
+    const headers = {
+      username : credentials.username,
+      password : credentials.password
+    };
 
     this.http.post('/api/auth/login', {headers}).subscribe(response => {
       if (response) {
