@@ -16,7 +16,7 @@ export class AppService {
       authorization : 'Basic' + btoa(credentials.username + ':' + credentials.password)
     } : {});*/
     const headers = {
-      username : credentials.username,
+      email : credentials.email,
       password : credentials.password
     };
 
@@ -42,11 +42,11 @@ export class AppService {
     const headers = {
       name : credentials.name,
       surname : credentials.surname,
-      email : credentials.email,
       ssn : credentials.ssn,
-      username : credentials.username,
+      email : credentials.email,
       password : credentials.password,
-      role_id : credentials.role_id
+      role_id : credentials.role_id,
+      username : credentials.username
     };
 
     this.http.post('/api/auth/register', {headers}).subscribe(response => {
