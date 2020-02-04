@@ -46,7 +46,7 @@ public class RequestController {
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
 	public @ResponseBody void processMessage(@RequestBody User user) throws Exception{
 		System.out.println(user.getEmail() + " " + user.getName());
-		//applicantService.register(user);
+		applicantService.register(user);
 	}
 
 
