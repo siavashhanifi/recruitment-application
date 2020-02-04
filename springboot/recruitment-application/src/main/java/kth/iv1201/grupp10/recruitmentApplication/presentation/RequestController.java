@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kth.iv1201.grupp10.recruitmentApplication.application.ApplicantService;
+import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 
 /**
@@ -39,6 +40,11 @@ public class RequestController {
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody void processMessage(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
 		
+	}
+	
+	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
+	public @ResponseBody void processMessage(@RequestBody User user) throws Exception{
+		applicantService.register(user);
 	}
 
 

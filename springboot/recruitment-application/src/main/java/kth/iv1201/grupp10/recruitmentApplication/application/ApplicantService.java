@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import kth.iv1201.grupp10.recruitmentApplication.domain.Authenticator;
 import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
+import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
+import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
 
 /**
  * @author Siavash
@@ -20,12 +22,16 @@ public class ApplicantService {
 	@Autowired
 	private Authenticator authenticator;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	public void login(UserLoginCredentials userLoginCredentials) {
 		this.authenticator.authenticate(userLoginCredentials);
 	}
 	
 	public void register(User user) {
-		
+		UserEntity userEntity = new UserEntity(user);
+		this.userRepository.save(userEntity);
 	}
 
 }

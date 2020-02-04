@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import kth.iv1201.grupp10.recruitmentApplication.domain.User;
+
 @Entity
 @Table(name="person")
 public class UserEntity {
@@ -22,6 +24,15 @@ public class UserEntity {
 	private String username;
 	
 	
+	public UserEntity(User user) {
+		this.name = user.getName();
+		this.surname = user.getSurname();
+		this.ssn = user.getSsn();
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+		this.role_id = user.getRole_id();
+		this.username = user.getUsername();
+	}
 	/**
 	 * @return the name
 	 */
