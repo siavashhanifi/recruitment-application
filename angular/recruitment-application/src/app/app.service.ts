@@ -12,9 +12,13 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   authenticate(credentials, callback) {
-    const headers = new HttpHeaders(credentials ? {
+    /*const headers = new HttpHeaders(credentials ? {
       authorization : 'Basic' + btoa(credentials.username + ':' + credentials.password)
-    } : {});
+    } : {});*/
+    const headers = {
+      email : credentials.email,
+      password : credentials.password
+    };
 
     this.http.post('/api/auth/login', {headers}).subscribe(response => {
       if (response) {
@@ -38,11 +42,11 @@ export class AppService {
     const headers = {
       name : credentials.name,
       surname : credentials.surname,
-      email : credentials.email,
       ssn : credentials.ssn,
-      username : credentials.username,
+      email : credentials.email,
       password : credentials.password,
-      role_id : credentials.role_id
+      role_id : credentials.role_id,
+      username : credentials.username
     };
 
     this.http.post('/api/auth/register', {headers}).subscribe(response => {
