@@ -27,14 +27,23 @@ export class AppService {
   }
 
   register(credentials, callback) {
-    const headers = new HttpHeaders(credentials ? {
+   /* const headers = new HttpHeaders(credentials ? {
       authorization : 'Basic' + btoa(
         credentials.firstName + ':'
         + credentials.lastName + ':'
         + credentials.email + ':'
         + credentials.username + ':'
         + credentials.password)
-    } : {});
+    } : {});*/
+    const headers = {
+      name : credentials.name,
+      surname : credentials.surname,
+      email : credentials.email,
+      ssn : credentials.ssn,
+      username : credentials.username,
+      password : credentials.password,
+      role_id : credentials.role_id
+    };
 
     this.http.post('/api/auth/register', {headers}).subscribe(response => {
       if (response) {
