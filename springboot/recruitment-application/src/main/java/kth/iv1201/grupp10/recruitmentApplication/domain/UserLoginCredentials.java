@@ -1,5 +1,8 @@
 package kth.iv1201.grupp10.recruitmentApplication.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component("userLoginCredentials")
 public class UserLoginCredentials {
 	private String email;
 	private String password;

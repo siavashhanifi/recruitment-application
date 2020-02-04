@@ -10,7 +10,7 @@ import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
  * @author Siavash
  * Handles the business logic for converting the currencies.
  */
-@Component("currencyConverter")
+@Component("Authenticator")
 public class Authenticator {
 	
 	@Autowired
