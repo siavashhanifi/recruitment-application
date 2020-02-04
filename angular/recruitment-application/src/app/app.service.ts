@@ -19,7 +19,8 @@ export class AppService {
     };
 
     this.http.post('/api/auth/login', credentials).subscribe(response => {
-      
+      console.log(response);
+      console.log(response['login-success']);
       this.authenticated = response['login-success'];
 
       return callback && callback();
