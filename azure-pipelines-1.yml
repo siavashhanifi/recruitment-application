@@ -16,15 +16,17 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
-  workingDirectory: 'iv1201/angular/recruitment-application/'
+  workingDirectory: 'angular/recruitment-application/'
   displayName: 'npm install and build'
 
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'iv1201/angular/recruitment-application/dist/recruitment-application'
+    workingDir: ''
+    SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: 'index.html'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/templates/'
+    
 
 - task: DeleteFiles@1
   inputs:
