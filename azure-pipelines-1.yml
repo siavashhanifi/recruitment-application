@@ -19,19 +19,20 @@ steps:
   workingDirectory: 'angular/recruitment-application/'
   displayName: 'npm install and build'
 
+
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Agent.BuildDirectory)/angular/recruitment-application/dist/recruitment-application/'
+    SourceFolder: 'angular/recruitment-application/dist/'
     Contents: 'index.html'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/templates/'
 
 - task: DeleteFiles@1
   inputs:
-    SourceFolder: '$(Agent.BuildDirectory)/dist/recruitment-application/'
+    SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: 'index.html'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Agent.BuildDirectory)/dist/recruitment-application/'
+    SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: '**'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/static/'
