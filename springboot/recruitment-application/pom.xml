@@ -91,6 +91,5 @@
 	  
     </plugins> 
   </build>  
-  <artifactId>recruitment-application</artifactId>
-<finalName>${artifactId}</finalName>  
+  <artifactId>recruitment-application</artifactId> 
 </project>
