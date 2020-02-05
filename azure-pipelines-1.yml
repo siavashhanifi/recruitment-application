@@ -61,6 +61,6 @@ steps:
     azureSubscription: 'Kostnadsfri utvärderingsversion (66db8369-ee65-44a9-82d4-dc68e33a58a2)'
     appType: 'webAppLinux'
     WebAppName: 'recruitment-application'
-    packageForLinux: 'springboot/recruitment-application/target/**'
+    packageForLinux: 'springboot/recruitment-application/target/recruitment-application-0.0.1.jar'
     RuntimeStack: 'TOMCAT|9.0-jre8'
     StartupCommand: 'java -jar recruitment-application-0.0.1.jar'
