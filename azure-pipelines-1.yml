@@ -28,15 +28,14 @@ steps:
 - script: 
     dir
   workingDirectory: 'angular/'
-  displayName: '/ dir'
+  displayName: 'angular/ dir'
 
-  - script: 
+- script: 
     dir
   displayName: '/ dir'
 
 - task: CopyFiles@2
   inputs:
-    workingDir: ''
     SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: 'index.html'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/templates/'
