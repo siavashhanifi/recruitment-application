@@ -21,17 +21,17 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'angular/recruitment-application/dist/recruitment-application'
+    SourceFolder: 'dist/recruitment-application'
     Contents: 'index.html'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/templates'
 
 - task: DeleteFiles@1
   inputs:
-    SourceFolder: 'angular/recruitment-application/dist/recruitment-application'
+    SourceFolder: 'dist/recruitment-application'
     Contents: 'index.html'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'angular/recruitment-application/dist/recruitment-application'
+    SourceFolder: 'dist/recruitment-application'
     Contents: '**'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/static'
