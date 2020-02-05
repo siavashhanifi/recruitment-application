@@ -20,6 +20,20 @@ steps:
   displayName: 'npm install and build'
 
 
+- script: 
+    dir
+  workingDirectory: 'angular/recruitment-application/'
+  displayName: 'angular/recruitment-application/ dir'
+ 
+- script: 
+    dir
+  workingDirectory: 'angular/'
+  displayName: '/ dir'
+
+  - script: 
+    dir
+  displayName: '/ dir'
+
 - task: CopyFiles@2
   inputs:
     workingDir: ''
