@@ -15,16 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan("kth.iv1201.grupp10.recruitmentApplication")
 public class Config {
-	
-		@Bean
-		public DataSource dataSource() {
-		    DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		    dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		    dataSource.setUsername("iv1201ssb");
-		    dataSource.setPassword("Grupp10ssb");
-		    dataSource.setUrl("jdbc:sqlserver://recruitment-application-db.database.windows.net:1433;database=RecruitmentApplicationDB;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-		    return dataSource;
-		}
-		
+
 
 }

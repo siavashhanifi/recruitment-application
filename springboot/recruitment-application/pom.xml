@@ -22,7 +22,13 @@
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-web</artifactId> 
-    </dependency>  
+    </dependency>
+	
+	<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-tomcat</artifactId>
+   <scope>provided</scope>
+</dependency>
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-thymeleaf</artifactId>  
@@ -85,5 +91,6 @@
 	  
     </plugins> 
   </build>  
-  <artifactId>recruitment-application</artifactId> 
+  <artifactId>recruitment-application</artifactId>
+<finalName>${artifactId}</finalName>  
 </project>
