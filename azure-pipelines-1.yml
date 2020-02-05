@@ -14,8 +14,6 @@ steps:
 
 - script: 
     npm install -g @angular/cli
-    npm install
-    ng build --prod
   workingDirectory: 'angular/recruitment-application/'
   displayName: 'install angular cli'
 
@@ -26,6 +24,7 @@ steps:
 
 - script: 
     ng build --prod
+  workingDirectory: 'angular/recruitment-application/'
   displayName: 'ng build'
 
 - task: ArchiveFiles@2
