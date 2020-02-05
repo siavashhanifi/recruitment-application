@@ -12,23 +12,17 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-
-- script: 
-    dir
-  workingDirectory: 'angular/recruitment-application/'
-  displayName: 'npm install and build'
-
 - script: 
     npm install -g @angular/cli
     npm install
     ng build --prod
-  workingDirectory: 'angular/recruitment-application/'
+  workingDirectory: 'iv1201/angular/recruitment-application/'
   displayName: 'npm install and build'
 
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'angular/recruitment-application/dist/recruitment-application'
+    SourceFolder: 'iv1201/angular/recruitment-application/dist/recruitment-application'
     Contents: 'index.html'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/templates/'
 
