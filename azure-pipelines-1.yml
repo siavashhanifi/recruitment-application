@@ -13,25 +13,54 @@ steps:
   displayName: 'Install Node.js'
 
 - script: 
-    cd angular/recruitment-application
     npm install -g @angular/cli
+  workingDirectory: 'angular/recruitment-application/'
+  displayName: 'install angular cli'
+
+- script: 
     npm install
+  workingDirectory: 'angular/recruitment-application/'
+  displayName: 'npm install'
+
+- script: 
     ng build --prod
-  displayName: 'npm install and build'
+  workingDirectory: 'angular/recruitment-application/'
+  displayName: 'ng build'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'angular/recruitment-application/dist/recruitment-application'
+    SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: 'index.html'
-    TargetFolder: 'springboot/recruitment-application/src/main/resources/templates'
+    TargetFolder: 'springboot/recruitment-application/src/main/resources/templates/'
+    
 
 - task: DeleteFiles@1
   inputs:
-    SourceFolder: 'angular/recruitment-application/dist/recruitment-application'
+    SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: 'index.html'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'angular/recruitment-application/dist/recruitment-application'
+    SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: '**'
-    TargetFolder: 'springboot/recruitment-application/src/main/resources/static'
+    TargetFolder: 'springboot/recruitment-application/src/main/resources/static/'
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'springboot/recruitment-application/pom.xml'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Kostnadsfri utvärderingsversion (66db8369-ee65-44a9-82d4-dc68e33a58a2)'
+    appType: 'webAppLinux'
+    WebAppName: 'recruitment-application'
+    packageForLinux: 'springboot/recruitment-application/target/recruitment-application-0.0.1.jar'
+    RuntimeStack: 'TOMCAT|9.0-jre8'
+    StartupCommand: 'java -jar recruitment-application-0.0.1.jar'
