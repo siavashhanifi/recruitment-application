@@ -94,7 +94,6 @@
 				  <include>*.css</include>
 				  <include>*.ico</include>
 				  <include>application.properties</include>
-				  <include>
                 </includes>
               </resource>
             </resources>
