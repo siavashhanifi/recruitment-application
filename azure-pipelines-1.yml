@@ -65,4 +65,4 @@ steps:
     WebAppName: 'recruitment-application'
     packageForLinux: 'springboot/recruitment-application/target/recruitment-application-0.0.1.war'
     RuntimeStack: 'TOMCAT|9.0-jre8'
-    StartupCommand: 'java -jar recruitment-application-0.0.1.jar'
+    StartupCommand: ''
