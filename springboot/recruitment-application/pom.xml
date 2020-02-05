@@ -9,6 +9,8 @@
     <relativePath/>  
     <!-- lookup parent from repository --> 
   </parent>  
+
+  <packaging>war</packaging>
   <groupId>kth.iv1201.grupp10</groupId>  
   <version>0.0.1</version>  
   <name>recruitment-application</name>  
@@ -64,42 +66,23 @@
       <plugin> 
         <groupId>org.springframework.boot</groupId>  
         <artifactId>spring-boot-maven-plugin</artifactId> 
-      </plugin>  
-      <plugin>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>azure-webapp-maven-plugin</artifactId>
-        <version>1.8.0</version>
+      </plugin>
+	  
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
         <configuration>
-          <schemaVersion>V2</schemaVersion>
-          <resourceGroup>IV1201</resourceGroup>
-          <appName>recruitment-application</appName>
-          <region>northeurope</region>
-          <runtime>
-            <os>linux</os>
-            <javaVersion>jre8</javaVersion>
-            <webContainer>jre8</webContainer>
-          </runtime>
-          <deployment>
-            <resources>
-              <resource>
-                <directory>${project.basedir}/target</directory>
-				<directory>${project.basedir}/target/classes</directory>
-				<directory>${project.basedir}/target/classes/templates</directory>
-				<directory>${project.basedir}/target/classes/static</directory>
-                <includes>
-                  <include>*.jar</include>
-				  <include>index.html</include>
-				  <include>*.js</include>
-				  <include>*.ttf</include>
-				  <include>*.css</include>
-				  <include>*.ico</include>
-				  <include>application.properties</include>
-                </includes>
-              </resource>
-            </resources>
-          </deployment>
+          <webResources>
+            <resource>
+              <!-- this is relative to the pom.xml directory -->
+              <directory>src/main/resources/</directory>
+            </resource>
+          </webResources>
         </configuration>
       </plugin>
+	  
+	  
     </plugins> 
   </build>  
   <artifactId>recruitment-application</artifactId> 
