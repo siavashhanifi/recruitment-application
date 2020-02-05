@@ -1,16 +1,27 @@
-<div class="container">
-  <!--<div class="alert alert-danger" [hidden]="!error">
-    There was a problem logging in. Please try again.
-  </div>-->
-  <form role="form" (submit)="login()">
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" [(ngModel)]="credentials.email">
+<div class="bg-contact3">
+  <div class="container-contact3">
+    <div class="wrap-contact3">
+      <form class="contact3-form validate-form" role="form" (submit)="login()">
+        <span class="contact3-form-title">
+          Login
+        </span>
+
+        <div class="wrap-input3 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+          <input class="input3" type="email" name="email"  id="email" [(ngModel)]="credentials.email" placeholder="Your Email">
+          <span class="focus-input3"></span>
+        </div>
+
+        <div class="wrap-input3 validate-input" data-validate = "Password is required">
+          <input class="input3" type="password" id="password" name="password" [(ngModel)]="credentials.password" placeholder="Your Password"/>
+          <span class="focus-input3"></span>
+        </div>
+
+        <div class="container-contact3-form-btn">
+          <button class="contact3-form-btn">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="credentials.password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </div>
 </div>
