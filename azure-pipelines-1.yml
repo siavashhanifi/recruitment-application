@@ -27,30 +27,6 @@ steps:
   workingDirectory: 'angular/recruitment-application/'
   displayName: 'ng build'
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: 'angular/recruitment-application/dist/recruitment-application'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
-
-
-- script: 
-    dir
-  workingDirectory: 'angular/recruitment-application/'
-  displayName: 'angular/recruitment-application/ dir'
- 
-- script: 
-    dir
-  workingDirectory: 'angular/'
-  displayName: 'angular/ dir'
-
-- script: 
-    dir
-  workingDirectory: '$(Build.ArtifactStagingDirectory)'
-  displayName: '/ dir'
-
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
@@ -68,3 +44,23 @@ steps:
     SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: '**'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/static/'
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'springboot/recruitment-application/pom.xml'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Kostnadsfri utvärderingsversion (66db8369-ee65-44a9-82d4-dc68e33a58a2)'
+    appType: 'webAppLinux'
+    WebAppName: 'recruitment-application'
+    packageForLinux: 'springboot/recruitment-application/target/**'
+    RuntimeStack: 'TOMCAT|9.0-jre8'
+    StartupCommand: 'java -jar recruitment-application-0.0.1.jar'
