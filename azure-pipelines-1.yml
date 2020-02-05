@@ -21,7 +21,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Agent.BuildDirectory)angular/recruitment-application/dist/recruitment-application/'
+    SourceFolder: '$(Agent.BuildDirectory)/angular/recruitment-application/dist/recruitment-application/'
     Contents: 'index.html'
     TargetFolder: 'springboot/recruitment-application/src/main/resources/templates/'
 
