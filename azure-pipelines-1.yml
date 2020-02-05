@@ -13,8 +13,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: 
-    cd angular
-    cd recruitment-application
+    cd angular/recruitment-application
     npm install -g @angular/cli
     npm install
     ng build --prod
