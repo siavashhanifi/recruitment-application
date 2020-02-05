@@ -15,9 +15,17 @@ steps:
 - script: 
     npm install -g @angular/cli
     npm install
-    ng build
+    ng build --prod
   workingDirectory: 'angular/recruitment-application/'
   displayName: 'npm install and build'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'angular/recruitment-application/dist/recruitment-application'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 
 
 - script: 
