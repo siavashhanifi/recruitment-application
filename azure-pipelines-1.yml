@@ -12,6 +12,12 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+
+- script: 
+    dir
+  workingDirectory: 'angular/recruitment-application/'
+  displayName: 'npm install and build'
+
 - script: 
     npm install -g @angular/cli
     npm install
