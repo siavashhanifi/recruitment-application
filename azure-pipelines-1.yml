@@ -52,6 +52,12 @@ steps:
     Contents: 'application.properties'
     TargetFolder: 'build/classes/'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'springboot/recruitment-application/'
+    Contents: 'web.config'
+    TargetFolder: 'build/'
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'springboot/recruitment-application/pom.xml'
