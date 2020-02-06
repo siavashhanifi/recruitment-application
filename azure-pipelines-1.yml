@@ -31,7 +31,7 @@ steps:
   inputs:
     SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: 'index.html'
-    TargetFolder: 'springboot/recruitment-application/src/main/resources/templates/'
+    TargetFolder: 'build/classes/templates'
     
 
 - task: DeleteFiles@1
@@ -43,7 +43,20 @@ steps:
   inputs:
     SourceFolder: 'angular/recruitment-application/dist/recruitment-application/'
     Contents: '**'
-    TargetFolder: 'springboot/recruitment-application/src/main/resources/static/'
+    TargetFolder: 'build/classes/static'
+
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'springboot/recruitment-application/src/main/resources/'
+    Contents: 'application.properties'
+    TargetFolder: 'build/classes/'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'springboot/recruitment-application/'
+    Contents: 'web.config'
+    TargetFolder: 'build/'
 
 - task: Maven@3
   inputs:
@@ -56,12 +69,26 @@ steps:
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'springboot/recruitment-application/target/'
+    Contents: 'recruitment-application-0.0.1.jar'
+    TargetFolder: 'build/'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'build/'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
 
 - task: AzureWebApp@1
   inputs:
     azureSubscription: 'Kostnadsfri utvärderingsversion (66db8369-ee65-44a9-82d4-dc68e33a58a2)'
     appType: 'webAppLinux'
     appName: 'recruitment-application'
-    package: 'springboot/recruitment-application/target/recruitment-application-0.0.1.war'
-    customDeployFolder: 'ROOT'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    customDeployFolder: 'classes'
     runtimeStack: 'TOMCAT|9.0-jre8'
