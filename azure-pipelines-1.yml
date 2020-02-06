@@ -90,5 +90,5 @@ steps:
     appType: 'webAppLinux'
     appName: 'recruitment-application'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    customDeployFolder: 'classes'
+    startUpCommand: 'java -jar recruitment-application-0.0.1.jar'
     runtimeStack: 'TOMCAT|9.0-jre8'
