@@ -9,7 +9,7 @@
     <relativePath/>  
     <!-- lookup parent from repository --> 
   </parent>  
-
+<packaging>war</packaging>
   <groupId>kth.iv1201.grupp10</groupId>  
   <version>0.0.1</version>  
   <name>recruitment-application</name>  
@@ -22,7 +22,11 @@
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-web</artifactId> 
     </dependency>
-
+	<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-tomcat</artifactId>
+   <scope>provided</scope>
+</dependency>
     <dependency> 
       <groupId>org.springframework.boot</groupId>  
       <artifactId>spring-boot-starter-thymeleaf</artifactId>  
