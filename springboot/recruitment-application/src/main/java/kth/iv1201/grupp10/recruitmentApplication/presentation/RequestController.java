@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kth.iv1201.grupp10.recruitmentApplication.application.ApplicantService;
+import kth.iv1201.grupp10.recruitmentApplication.application.ApplicantServiceImpl;
 import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 
@@ -27,7 +27,7 @@ import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 public class RequestController {
 
 	@Autowired
-	ApplicantService applicantService;
+	ApplicantServiceImpl applicantService;
 
 	/**
 	 * Presents the index-page when "/" is requested by the client.

@@ -17,21 +17,20 @@ import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class ApplicantService {
+public class ApplicantServiceImpl {
 	
-	@Autowired
-	private Authenticator authenticator;
+	//@Autowired
+	//private Authenticator authenticator;
 	
 	@Autowired
 	private UserRepository userRepository;
 	
 	public boolean validCredentials(UserLoginCredentials userLoginCredentials) {
-		return this.authenticator.validCredentials(userLoginCredentials);
+		//return this.authenticator.validCredentials(userLoginCredentials);
 	}
 	
 	public void register(User user) {
 		UserEntity userEntity = new UserEntity(user);
 		this.userRepository.save(userEntity);
 	}
-
 }
