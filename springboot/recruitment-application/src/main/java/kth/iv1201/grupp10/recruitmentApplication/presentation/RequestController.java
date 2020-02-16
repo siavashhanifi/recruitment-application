@@ -37,14 +37,19 @@ public class RequestController {
 	public String index() {
 		return "index";
 	}
+	
+	
+	@GetMapping("/authenticate")
+	public String authenticate() {
+		if(true)
+			return "authorized";
+		else
+			return "unauthorized";
+	}
 
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
-		boolean loginSuccessful = applicantService.validCredentials(userLoginCredentials);
-		if(loginSuccessful)
-			return "{\"login-success\" : \"true\"}";
-		else
-			return "{\"login-success\" : \"false\"}";
+		return applicantService.login(userLoginCredentials);
 	}
 	
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
