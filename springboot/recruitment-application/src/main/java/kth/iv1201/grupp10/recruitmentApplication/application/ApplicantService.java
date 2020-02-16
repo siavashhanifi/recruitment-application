@@ -37,12 +37,10 @@ public class ApplicantService {
 	private UserRepository userRepository;
 	
 	public String login(UserLoginCredentials userLoginCredentials) {
-		Map<String, Object> claims = new HashMap<>();
-		
-		if(credentialValidator.validCredentials(userLoginCredentials)) {
+		boolean validCredentials = credentialValidator.validCredentials(userLoginCredentials);
+		if(validCredentials) {
 			UserEntity userEntity = this.userRepository.findByEmail(userLoginCredentials.getEmail());
-			claims.put("role", userEntity.getRole_id());
-			return jwtGenerator.generateToken(claims, userLoginCredentials);
+			return jwtGenerator.generateToken(userEntity);
 		}
 		else return "";
 	}
@@ -51,5 +49,9 @@ public class ApplicantService {
 		UserEntity userEntity = new UserEntity(user);
 		this.userRepository.save(userEntity);
 	}
+
+	/*public void isAuthorized(String jwtToken) {
+		this.jwtValidator.validateToken(jwtToken);
+	}*/
 
 }
