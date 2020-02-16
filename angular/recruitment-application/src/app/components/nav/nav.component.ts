@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
-import { AppRoutingModule } from '../../app-routing.module';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,10 +9,9 @@ import { AppRoutingModule } from '../../app-routing.module';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private app: AppService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  authenticated() { return this.app.authenticated; }
 }

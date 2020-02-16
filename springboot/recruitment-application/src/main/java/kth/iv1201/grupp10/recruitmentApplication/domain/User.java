@@ -1,98 +1,86 @@
 package kth.iv1201.grupp10.recruitmentApplication.domain;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@Component
+@Entity
+@Table(	name = "users", 
+		uniqueConstraints = { 
+			@UniqueConstraint(columnNames = "username"),
+			@UniqueConstraint(columnNames = "email") 
+		})
 public class User {
-	private String name;
-	private String surname;
-	private String ssn;
-	private String email;
-	private String password;
-	private int role_id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotBlank
+	@Size(max = 20)
 	private String username;
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
+
+	@NotBlank
+	@Size(max = 50)
+	@Email
+	private String email;
+
+	@NotBlank
+	@Size(max = 120)
+	private String password;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
+	public User() {
 	}
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-	/**
-	 * @return the surname
-	 */
-	public String getSurname() {
-		return surname;
-	}
-	/**
-	 * @param surname the surname to set
-	 */
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	/**
-	 * @return the ssn
-	 */
-	public String getSsn() {
-		return ssn;
-	}
-	/**
-	 * @param ssn the ssn to set
-	 */
-	public void setSsn(String ssn) {
-		this.ssn = ssn;
-	}
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
+
+	public User(String username, String email, String password) {
+		this.username = username;
 		this.email = email;
-	}
-	/**
-	 * @return the role_id
-	 */
-	public int getRole_id() {
-		return role_id;
-	}
-	/**
-	 * @param role_id the role_id to set
-	 */
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
-	}
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
 		this.password = password;
 	}
-	/**
-	 * @return the username
-	 */
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getUsername() {
 		return username;
 	}
-	/**
-	 * @param username the username to set
-	 */
+
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }
