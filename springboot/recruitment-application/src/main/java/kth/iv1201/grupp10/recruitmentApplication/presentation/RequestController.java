@@ -1,16 +1,13 @@
 package kth.iv1201.grupp10.recruitmentApplication.presentation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kth.iv1201.grupp10.recruitmentApplication.application.ApplicantService;
@@ -28,6 +25,7 @@ public class RequestController {
 
 	@Autowired
 	ApplicantService applicantService;
+	
 
 	/**
 	 * Presents the index-page when "/" is requested by the client.
@@ -37,14 +35,20 @@ public class RequestController {
 	public String index() {
 		return "index";
 	}
+	
+	
+	@GetMapping("/listapplicants")
+	public @ResponseBody String authenticate(@RequestHeader String jwtToken) {
+		//applicantService.isAuthorized(jwtToken);
+		if(true)
+			return "authorized";
+		else
+			return "unauthorized";
+	}
 
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
-		boolean loginSuccessful = applicantService.validCredentials(userLoginCredentials);
-		if(loginSuccessful)
-			return "{\"login-success\" : \"true\"}";
-		else
-			return "{\"login-success\" : \"false\"}";
+		return applicantService.login(userLoginCredentials);
 	}
 	
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
