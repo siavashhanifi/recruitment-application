@@ -9,6 +9,7 @@ export class AuthService {
 
   private registerURL = 'api/auth/register';
   private loginURL = 'api/auth/login';
+  private validURL = 'api/auth/validToken';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,11 +27,28 @@ export class AuthService {
   }
 
   loggedIn() {
-    return !!localStorage.getItem('token');
+    this.http.get(this.validURL).subscribe(
+      res => {
+        if (res['validToken']) {
+          return !!localStorage.getItem('token');
+        } else {
+          return false;
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/');
+  }
+
+  isAuthorized() {
+    if (localStorage.getItem('role_id') === '2') {
+      return true;
+    } else { return false; }
   }
 }

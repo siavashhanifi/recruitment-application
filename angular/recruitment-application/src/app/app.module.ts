@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './auth.service';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { AuthGuard } from './auth.guard';
+import { ApplicationListComponent } from './components/application-list/application-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     NavComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ApplicationListComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService,
+  providers: [AuthService, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
