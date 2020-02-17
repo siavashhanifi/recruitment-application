@@ -38,8 +38,10 @@ public class RequestController {
 	
 	
 	@GetMapping("/listapplicants")
-	public @ResponseBody String authenticate(@RequestHeader String jwtToken) {
-		//applicantService.isAuthorized(jwtToken);
+	public @ResponseBody String authenticate(@RequestHeader("Authorization") String authorization) {
+		String jwtToken = authorization.substring(7);
+		System.out.println(jwtToken);
+		applicantService.isRecruit(jwtToken);
 		if(true)
 			return "authorized";
 		else

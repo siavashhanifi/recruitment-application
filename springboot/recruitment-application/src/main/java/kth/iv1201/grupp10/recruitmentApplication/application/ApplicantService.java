@@ -50,8 +50,12 @@ public class ApplicantService {
 		this.userRepository.save(userEntity);
 	}
 
-	/*public void isAuthorized(String jwtToken) {
-		this.jwtValidator.validateToken(jwtToken);
-	}*/
+	public boolean isRecruit(String jwtToken) {
+		int authClaim = this.jwtValidator.getAuthorizationClaim(jwtToken);
+		if(authClaim == 2)
+			return true;
+		else
+			return false;
+	}
 
 }
