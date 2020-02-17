@@ -26,7 +26,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  loggedIn() {
+  loggedIn(): boolean {
     this.http.get(this.validURL).subscribe(
       res => {
         if (res['validToken']) {
@@ -37,6 +37,7 @@ export class AuthService {
       },
       err => {
         console.log(err);
+        return false;
       }
     );
   }
