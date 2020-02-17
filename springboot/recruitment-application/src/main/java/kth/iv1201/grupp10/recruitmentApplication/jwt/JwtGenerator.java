@@ -27,7 +27,7 @@ public class JwtGenerator {
 
 	private Map<String, Object> setClaims(UserEntity userEntity) {
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("Role", userEntity.getRole_id());
+		claims.put("role_id", userEntity.getRole_id());
 		return claims;
 	}
 	
