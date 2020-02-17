@@ -1,6 +1,9 @@
 package kth.iv1201.grupp10.recruitmentApplication.domain;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
@@ -13,7 +16,7 @@ import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
 
 
 @Component
-public class CredentialValidator {
+public class Authenticator {
 	
 	@Autowired
 	private UserRepository userRepository;

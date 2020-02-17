@@ -15,7 +15,7 @@
         <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="login" routerLinkActive="active">Login</a>
       </li>
       <li  class="nav-item">
-        <a class="nav-link disabled" style="cursor: pointer" *ngIf="authService.loggedIn()" routerLink="logout" routerLinkActive="active">Logout</a>
+        <a class="nav-link disabled" style="cursor: pointer" *ngIf="authService.loggedIn()" (click)="authService.logout()" routerLinkActive="active">Logout</a>
       </li>
     </ul>
   </div>
