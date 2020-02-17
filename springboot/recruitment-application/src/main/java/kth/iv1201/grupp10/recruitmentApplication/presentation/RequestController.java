@@ -37,20 +37,20 @@ public class RequestController {
 	}
 	
 	
-	@GetMapping("/listapplicants")
+	@GetMapping("/api/validToken")
 	public @ResponseBody String authenticate(@RequestHeader("Authorization") String authorization) {
 		String jwtToken = authorization.substring(7);
 		System.out.println(jwtToken);
-		applicantService.isRecruit(jwtToken);
+		applicantService.isValid(jwtToken);
 		if(true)
-			return "authorized";
+			return "{\"validToken\" : \"true\"}";
 		else
-			return "unauthorized";
+			return "{\"validToken\" : \"false\"}";
 	}
 
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
-		return applicantService.login(userLoginCredentials);
+		return "{\"token\" : \"" + applicantService.login(userLoginCredentials)+ "\"}";
 	}
 	
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)

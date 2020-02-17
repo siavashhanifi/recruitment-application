@@ -12,9 +12,8 @@ public class JwtValidator {
 	@Value("${jwt.secret}")
 	private String secret;
 
-	public int getAuthorizationClaim(String jwtToken) {
-		Claims claims = this.getAllClaimsFromToken(jwtToken);
-		return (int)claims.get("Role");
+	public boolean isValid(String jwtToken) {
+		return Jwts.parser().setSigningKey(secret).isSigned(jwtToken);
 	}
 
 	private Claims getAllClaimsFromToken(String token) {
