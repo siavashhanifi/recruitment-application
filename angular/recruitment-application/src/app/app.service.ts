@@ -11,10 +11,10 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  authenticate(credentials, callback) {
+  authenticate(credentials: any, callback: CallableFunction) {
 
     const headers = {
-      email : credentials.email,
+      username : credentials.username,
       password : credentials.password
     };
 
@@ -27,7 +27,7 @@ export class AppService {
     });
   }
 
-  register(credentials, callback) {
+  register(credentials: any, callback: CallableFunction) {
 
     const headers = {
       name : credentials.name,
