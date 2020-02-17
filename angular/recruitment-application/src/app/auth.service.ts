@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {JwtHelperService} from '@auth0/angular-jwt';
+import * as jwt_decode from 'jwt-decode';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,8 @@ export class AuthService {
   private registerURL = 'api/auth/register';
   private loginURL = 'api/auth/login';
   private validURL = 'api/auth/validToken';
-  private helper:JwtHelperService;
 
-  constructor(private http: HttpClient, private router: Router, ) { 
-    this.helper = new JwtHelperService();
+  constructor(private http: HttpClient, private router: Router, ) {
   }
 
   register(user: any) {
@@ -30,23 +30,38 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  isValid(): any {
-    this.http.get(this.validURL).subscribe(
+  isValid(): Observable<boolean> {
+    let valid: Observable<boolean>;
+
+    valid = this.http.get(this.validURL).pipe(
+      map((
+        res => {
+          if (res['validToken'] === 'true') {
+              return true;
+          } else { return false; }
+        }
+      ))
+    );
+    console.log(valid);
+    return valid;
+    /*this.http.get(this.validURL).subscribe(
       res => {
         if (res['validToken']) {
-          return !!localStorage.getItem('token');
+          if (res['role'] === '2') {
+            return true;
+          } else {return false; }
         } else {
           return false;
         }
       },
       err => {
-        console.log(err);
         return false;
+        console.log(err);
       }
-    );
+    );*/
   }
 
-  loggedIn(){
+  loggedIn() {
     return !!localStorage.getItem('token');
   }
 
@@ -57,9 +72,9 @@ export class AuthService {
 
   isAuthorized() {
     console.log('here');
-    var token = this.helper.decodeToken(localStorage.getItem('token'));
+    const token = jwt_decode(localStorage.getItem('token'));
     console.log(token);
-    if (token["role_id"]==2) {
+    if (token['role_id'] === 2) {
       return true;
     } else { return false; }
   }

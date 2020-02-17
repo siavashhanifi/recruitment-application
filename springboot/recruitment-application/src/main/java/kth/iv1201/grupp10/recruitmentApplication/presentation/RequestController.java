@@ -42,7 +42,7 @@ public class RequestController {
 		String jwtToken = authorization.substring(7);
 		System.out.println(jwtToken);
 		applicantService.isValid(jwtToken);
-		if(true)
+		if(applicantService.isValid(jwtToken))
 			return "{\"validToken\" : \"true\"}";
 		else
 			return "{\"validToken\" : \"false\"}";
