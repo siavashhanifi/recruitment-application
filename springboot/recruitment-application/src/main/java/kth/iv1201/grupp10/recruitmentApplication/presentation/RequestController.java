@@ -40,7 +40,6 @@ public class RequestController {
 	@GetMapping("/api/auth/validToken")
 	public @ResponseBody String authenticate(@RequestHeader("Authorization") String authorization) {
 		String jwtToken = authorization.substring(7);
-		System.out.println(jwtToken);
 		applicantService.isValid(jwtToken);
 		if(true)
 			return "{\"validToken\" : \"true\"}";
