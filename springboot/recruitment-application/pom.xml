@@ -11,9 +11,8 @@
 		<relativePath />
 		<!-- lookup parent from repository -->
 	</parent>
-	
-	<packaging>war</packaging>
-	
+
+
 	<groupId>kth.iv1201.grupp10</groupId>
 	<version>0.0.1</version>
 	<name>recruitment-application</name>
@@ -23,6 +22,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<packaging>war</packaging>
 
 	<dependencies>
 		<dependency>
