@@ -59,7 +59,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Azure-prenumeration 1 (13a0ccba-e47e-4cdd-8342-c882928582e0)'
+    azureSubscription: 'bjorn-serviceconnection'
     appType: 'webAppLinux'
     appName: 'recruitment-application-iv1201'
     package: 'springboot/recruitment-application/target/recruitment-application-0.0.1.war'
