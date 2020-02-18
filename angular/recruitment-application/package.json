@@ -9,8 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc": "compodoc",
-    "generate-docs":"compodoc -p tsconfig.app.json",
-    "serve-docs":"compodoc -s tsconfig.app.json"
+    "generate-docs": "compodoc -p tsconfig.app.json",
+    "serve-docs": "compodoc -s tsconfig.app.json"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@auth0/angular-jwt": "^4.0.0",
+    "jwt-decode": "^2.2.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.4",
     "tslib": "^1.10.0",
