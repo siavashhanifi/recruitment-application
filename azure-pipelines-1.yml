@@ -59,9 +59,9 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Kostnadsfri utvärderingsversion (66db8369-ee65-44a9-82d4-dc68e33a58a2)'
+    azureSubscription: 'bjorn-serviceconnection'
     appType: 'webAppLinux'
-    appName: 'recruitment-application'
+    appName: 'recruitment-application-iv1201'
     package: 'springboot/recruitment-application/target/recruitment-application-0.0.1.war'
     customDeployFolder: 'ROOT'
     runtimeStack: 'TOMCAT|9.0-jre8'
