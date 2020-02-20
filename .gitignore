@@ -2,6 +2,7 @@
 
 # compiled output
 /angular/recruitment-application/dist
+/springboot/recruitment-application/src/main/resources/templates/index.html
 /springboot/recruitment-application/src/main/resources/templates
 /springboot/recruitment-application/src/main/resources/static
 /tmp
