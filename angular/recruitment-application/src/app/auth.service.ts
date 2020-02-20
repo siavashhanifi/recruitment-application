@@ -5,11 +5,26 @@ import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+/**
+ * Class AuthService responsible for backend communication related to user authorization.
+ *
+ * @export
+ * @class AuthService
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+
+  /**
+   * registrationURL: url for backend registration handling
+   * loginURL: url for backend login handling
+   * validURL: url for backend token validation
+   *
+   * @private
+   * @memberof AuthService
+   */
   private registerURL = 'api/auth/register';
   private loginURL = 'api/auth/login';
   private validURL = 'api/auth/validToken';
