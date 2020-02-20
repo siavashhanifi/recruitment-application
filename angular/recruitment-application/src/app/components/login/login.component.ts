@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
-
+/**
+ * Component
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
+
 export class LoginComponent {
 
   credentials = {email: '', password: ''};
@@ -22,7 +26,7 @@ export class LoginComponent {
           localStorage.setItem('token', res['token']);
           this.router.navigateByUrl('');
         },
-        err => {console.log(err); console.log('hej'); }
+        err => {console.log(err); console.log('hej'); window.alert(err.error.message); }
       );
   }
 }

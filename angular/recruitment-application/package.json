@@ -8,9 +8,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "compodoc": "compodoc",
-    "generate-docs": "compodoc -p tsconfig.app.json",
-    "serve-docs": "compodoc -s tsconfig.app.json"
   },
   "private": true,
   "dependencies": {

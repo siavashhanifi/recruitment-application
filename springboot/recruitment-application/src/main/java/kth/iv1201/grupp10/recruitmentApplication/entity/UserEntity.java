@@ -1,5 +1,6 @@
 package kth.iv1201.grupp10.recruitmentApplication.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,10 +18,13 @@ public class UserEntity {
 	private int person_id;
 	private String name;
 	private String surname;
+	@Column(unique = true)
 	private String ssn;
+	@Column(unique = true)
 	private String email;
 	private String password;
 	private int role_id;
+	@Column(unique = true)
 	private String username;
 	
 	public UserEntity() {

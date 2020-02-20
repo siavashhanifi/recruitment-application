@@ -1,5 +1,6 @@
 package kth.iv1201.grupp10.recruitmentApplication.application;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
