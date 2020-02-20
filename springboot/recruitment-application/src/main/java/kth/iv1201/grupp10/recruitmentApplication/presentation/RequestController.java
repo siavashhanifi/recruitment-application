@@ -38,8 +38,8 @@ public class RequestController {
 	@GetMapping("/api/auth/validToken")
 	public @ResponseBody String authenticate(@RequestHeader("Authorization") String authorization) {
 		String jwtToken = authorization.substring(7);
-		applicantService.isValid(jwtToken);
-		if (true)
+		boolean tokenValid = applicantService.isValid(jwtToken);
+		if (tokenValid)
 			return "{\"validToken\" : \"true\"}";
 		else
 			return "{\"validToken\" : \"false\"}";
