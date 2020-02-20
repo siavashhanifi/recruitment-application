@@ -22,7 +22,7 @@ export class LoginComponent {
           localStorage.setItem('token', res['token']);
           this.router.navigateByUrl('');
         },
-        err => {console.log(err); console.log('hej'); }
+        err => {console.log(err); window.alert(err.error.message) }
       );
   }
 }
