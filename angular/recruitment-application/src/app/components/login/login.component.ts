@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 /**
+ * Component LoginComponent representing the login interface of the web application.
  * Component decorator containing selector, template url and style urls.
  * The selector is used for identifying the component in html.
  * The template url defines the html associated to the component.

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 
 /**
+ * Component NavComponent representing a navigation bar for navigation.
  * Component decorator containing selector, template url and style urls.
  * The selector is used for identifying the component in html.
  * The template url defines the html associated to the component.
