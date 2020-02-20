@@ -15,9 +15,8 @@ import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 
 /**
- * @author Siavash
- * Responsible for delegating client requests to the CurrencyConverterService and
- * presenting the correct response(html).
+ * @author Siavash Responsible for delegating client requests to the
+ *         CurrencyConverterService and presenting the correct response(html).
  */
 @Controller
 @Scope("session")
@@ -25,39 +24,45 @@ public class RequestController {
 
 	@Autowired
 	ApplicantService applicantService;
-	
 
 	/**
 	 * Presents the index-page when "/" is requested by the client.
+	 * 
 	 * @return index.html
 	 */
 	@GetMapping("/")
 	public String index() {
 		return "index";
 	}
-	
-	
+
 	@GetMapping("/api/auth/validToken")
 	public @ResponseBody String authenticate(@RequestHeader("Authorization") String authorization) {
 		String jwtToken = authorization.substring(7);
 		System.out.println(jwtToken);
 		applicantService.isValid(jwtToken);
-		if(true)
+		if (true)
 			return "{\"validToken\" : \"true\"}";
 		else
 			return "{\"validToken\" : \"false\"}";
 	}
 
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
-	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception{
-		return "{\"token\" : \"" + applicantService.login(userLoginCredentials)+ "\"}";
+	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception {
+		try {
+			return "{\"token\" : \"" + applicantService.login(userLoginCredentials) + "\"}";
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
 	}
-	
+
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
-	public @ResponseBody void processMessage(@RequestBody User user) throws Exception{
-		applicantService.register(user);
+	public @ResponseBody void processMessage(@RequestBody User user) throws Exception {
+		try {
+			applicantService.register(user);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+
 	}
-
-
 
 }
