@@ -2,8 +2,9 @@
 
 # compiled output
 /angular/recruitment-application/dist
-/springboot/recruitment-application/src/main/resources/templates
-/springboot/recruitment-application/src/main/resources/static
+/springboot/recruitment-application/target
+/springboot/recruitment-application/src/main/resources/templates/
+/springboot/recruitment-application/src/main/resources/static/
 /tmp
 /out-tsc
 # Only exists if Bazel was run
