@@ -13,6 +13,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { AuthGuard } from './auth.guard';
 import { ApplicationListComponent } from './components/application-list/application-list.component';
 
+// Entry point of all imports and providers needed for the web application.
 @NgModule({
   declarations: [
     AppComponent,
