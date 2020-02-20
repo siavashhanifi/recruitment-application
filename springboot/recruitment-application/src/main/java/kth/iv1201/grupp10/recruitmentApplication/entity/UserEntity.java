@@ -8,6 +8,10 @@ import javax.persistence.Table;
 
 import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 
+/**
+ * @author Siavash
+ * Database user representation
+ */
 @Entity
 @Table(name="person")
 public class UserEntity {
@@ -27,10 +31,17 @@ public class UserEntity {
 	@Column(unique = true)
 	private String username;
 	
+	/**
+	 * Constructor
+	 */
 	public UserEntity() {
 
 	}
 	
+	/**
+	 * Creates an user entity from a user object
+	 * @param user
+	 */
 	public UserEntity(User user) {
 		this.name = user.getName();
 		this.surname = user.getSurname();

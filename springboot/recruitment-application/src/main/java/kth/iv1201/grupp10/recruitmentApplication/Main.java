@@ -5,11 +5,19 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * @author siavash hanifi
+ * Starting point of the application
+ */
 @SpringBootApplication
 public class Main extends SpringBootServletInitializer{
 
-  public static void main(String[] args) {
-    SpringApplication.run(Main.class, args);
-  }
+	/**
+	 * Starts the application
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		SpringApplication.run(Main.class, args);
+	}
 
 }

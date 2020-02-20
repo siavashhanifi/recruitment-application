@@ -10,6 +10,10 @@ import io.jsonwebtoken.*;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
 
+/**
+ * @author siavash
+ * Handles token generation
+ */
 @Component
 public class JwtGenerator {
 
@@ -19,6 +23,11 @@ public class JwtGenerator {
 	private String secret;
 	
 
+	/**
+	 * Generates a token for a specified user
+	 * @param userEntity the user
+	 * @return JWT-token
+	 */
 	public String generateToken(UserEntity userEntity) {
 		Map<String, Object> claims = setClaims(userEntity);
 		return doGenerateToken(claims, userEntity.getEmail());

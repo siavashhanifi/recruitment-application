@@ -37,6 +37,12 @@ public class ApplicantService {
 	@Autowired
 	private UserRepository userRepository;
 
+	/**
+	 * Attempts to log in a user. Checking if credentials are valid.
+	 * @param userLoginCredentials
+	 * @return if valid: JWT-token else: throws exception
+	 * @throws Exception
+	 */
 	public String login(UserLoginCredentials userLoginCredentials) throws Exception {
 		boolean validCredentials = credentialValidator.validCredentials(userLoginCredentials);
 		if (!validCredentials) {
@@ -47,6 +53,12 @@ public class ApplicantService {
 		}
 	}
 
+	
+	/**
+	 * Attempts to register a new user. Checks if user already exists
+	 * @param user - user to register
+	 * @throws Exception
+	 */
 	public void register(User user) throws Exception {
 		if (alreadyRegistered(user)) {
 			throw new Exception("already registered");
@@ -57,11 +69,17 @@ public class ApplicantService {
 
 	}
 
-	public boolean alreadyRegistered(User user){
+	private boolean alreadyRegistered(User user){
 		return this.userRepository.findByEmail(user.getEmail()) != null;
 	}
 
-	public boolean isValid(String jwtToken) {
+	
+	/**
+	 * Checks if a JWT-token is valid.
+	 * @param jwtToken
+	 * @return boolean
+	 */
+	public boolean tokenValid(String jwtToken) {
 		boolean tokenIsValid = this.jwtValidator.isValid(jwtToken);
 		return tokenIsValid;
 

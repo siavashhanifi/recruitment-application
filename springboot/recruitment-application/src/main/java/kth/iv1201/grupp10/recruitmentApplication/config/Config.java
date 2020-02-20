@@ -11,6 +11,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
+/**
+ * @author siavash hanifi
+ *
+ *Contains global application configuration
+ */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("kth.iv1201.grupp10.recruitmentApplication")

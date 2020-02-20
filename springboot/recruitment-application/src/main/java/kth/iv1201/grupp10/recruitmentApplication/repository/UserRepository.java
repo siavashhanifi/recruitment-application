@@ -11,8 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
 
 
+/**
+ * Interface for database communication
+ * @author siavash
+ *
+ */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
 public interface UserRepository extends JpaRepository<UserEntity, Integer>{
+	/**
+	 * Fetches a user from the database found by email
+	 * @param email the email of the user
+	 * @return user
+	 */
 	public UserEntity findByEmail(String email);
 }

@@ -8,7 +8,7 @@ import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
 
 /**
  * @author Siavash
- * Handles the business logic for converting the currencies.
+ * Handles credential validation
  */
 
 
@@ -18,6 +18,11 @@ public class CredentialValidator {
 	@Autowired
 	private UserRepository userRepository;
 
+	/**
+	 * Checks if credentials are valid
+	 * @param userLoginCredentials
+	 * @return boolean
+	 */
 	public boolean validCredentials(UserLoginCredentials userLoginCredentials) {
 		String email = userLoginCredentials.getEmail();
 		String password = userLoginCredentials.getPassword();
