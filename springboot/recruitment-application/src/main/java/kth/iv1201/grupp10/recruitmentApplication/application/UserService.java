@@ -1,9 +1,5 @@
 package kth.iv1201.grupp10.recruitmentApplication.application;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,12 +14,13 @@ import kth.iv1201.grupp10.recruitmentApplication.jwt.JwtValidator;
 import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
 
 /**
- * @author Siavash Calls the appropriate methods in the domain to serve the
- *         client.
+ * @author Siavash Hanifi
+ * Handles cross-layer communication between the CredentialValidator, JwtGenerator,
+ * JwtValidator and userRepository.
  */
 @Service
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
-public class ApplicantService {
+public class UserService {
 
 	@Autowired
 	private CredentialValidator credentialValidator;
@@ -36,7 +33,17 @@ public class ApplicantService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	private boolean alreadyRegistered(User user){
+		return this.userRepository.findByEmail(user.getEmail()) != null;
+	}
 
+	/**
+	 * Attempts to log in a user based on login credentials.
+	 * @param userLoginCredentials, the login credentials.
+	 * @return if credentials are valid: JWT
+	 * @throws Exception, thrown if credentials invalid.
+	 */
 	public String login(UserLoginCredentials userLoginCredentials) throws Exception {
 		boolean validCredentials = credentialValidator.validCredentials(userLoginCredentials);
 		if (!validCredentials) {
@@ -47,6 +54,11 @@ public class ApplicantService {
 		}
 	}
 
+	/**
+	 * Attempts to register a user
+	 * @param user, the user.
+	 * @throws Exception, thrown if user already is registered.
+	 */
 	public void register(User user) throws Exception {
 		if (alreadyRegistered(user)) {
 			throw new Exception("already registered");
@@ -57,13 +69,14 @@ public class ApplicantService {
 
 	}
 
-	public boolean alreadyRegistered(User user){
-		return this.userRepository.findByEmail(user.getEmail()) != null;
-	}
-
-	public boolean isValid(String jwtToken) {
-		boolean tokenIsValid = this.jwtValidator.isValid(jwtToken);
-		return tokenIsValid;
+	/**
+	 * Checks if a token is valid.
+	 * @param jwtToken
+	 * @return true if valid, false if invalid
+	 */
+	public boolean tokenValid(String jwtToken) {
+		boolean tokenValid = this.jwtValidator.isValid(jwtToken);
+		return tokenValid;
 
 	}
 

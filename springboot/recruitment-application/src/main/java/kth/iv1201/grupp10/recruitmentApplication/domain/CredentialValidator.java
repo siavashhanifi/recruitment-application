@@ -2,27 +2,30 @@ package kth.iv1201.grupp10.recruitmentApplication.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
 import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
 
 /**
  * @author Siavash
- * Handles the business logic for converting the currencies.
+ * Handles credential validation.
  */
-
-
 @Component
 public class CredentialValidator {
 	
 	@Autowired
 	private UserRepository userRepository;
 
+	/**
+	 * Validates user login credentials.
+	 * Checks if email is registered and if the password is correct.
+	 * @param userLoginCredentials
+	 * @return
+	 */
 	public boolean validCredentials(UserLoginCredentials userLoginCredentials) {
 		String email = userLoginCredentials.getEmail();
 		String password = userLoginCredentials.getPassword();
-		UserEntity userEntity = userRepository.findByEmail(email);
 		if(emailRegistered(email)) {
+			UserEntity userEntity = userRepository.findByEmail(email);
 			if(password.compareTo(userEntity.getPassword()) == 0)
 				return true;
 		}

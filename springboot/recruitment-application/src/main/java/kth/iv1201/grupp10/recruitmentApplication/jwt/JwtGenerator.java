@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.*;
-import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
 
+/**
+ * @author Siavash Hanifi
+ * Handles the generation of JWTs.
+ */
 @Component
 public class JwtGenerator {
 
@@ -19,10 +22,14 @@ public class JwtGenerator {
 	private String secret;
 	
 
+	/**
+	 * Generates a token for a user.
+	 * @param userEntity, the user
+	 * @return JWT
+	 */
 	public String generateToken(UserEntity userEntity) {
 		Map<String, Object> claims = setClaims(userEntity);
 		return doGenerateToken(claims, userEntity.getEmail());
-		
 	}
 
 	private Map<String, Object> setClaims(UserEntity userEntity) {

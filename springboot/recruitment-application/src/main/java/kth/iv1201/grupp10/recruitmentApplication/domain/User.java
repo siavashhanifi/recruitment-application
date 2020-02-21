@@ -2,6 +2,11 @@ package kth.iv1201.grupp10.recruitmentApplication.domain;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Siavash
+ * Represents a user. 
+ * Is used for parsing a JSON object that represents a user.
+ */
 @Component
 public class User {
 	private String name;

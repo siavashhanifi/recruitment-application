@@ -10,24 +10,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kth.iv1201.grupp10.recruitmentApplication.application.ApplicantService;
+import kth.iv1201.grupp10.recruitmentApplication.application.UserService;
 import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 
 /**
- * @author Siavash Responsible for delegating client requests to the
- *         CurrencyConverterService and presenting the correct response(html).
+ * @author Siavash Hanifi
+ * Responsible for handling client requests.
  */
 @Controller
 @Scope("session")
 public class RequestController {
 
 	@Autowired
-	ApplicantService applicantService;
+	UserService userService;
 
 	/**
 	 * Presents the index-page when "/" is requested by the client.
-	 * 
 	 * @return index.html
 	 */
 	@GetMapping("/")
@@ -35,29 +34,45 @@ public class RequestController {
 		return "index";
 	}
 
+	/**
+	 * Handles the client's request to validate a JWT.
+	 * @param authorization, the header tag holding the JWT
+	 * @return
+	 */
 	@GetMapping("/api/auth/validToken")
 	public @ResponseBody String authenticate(@RequestHeader("Authorization") String authorization) {
 		String jwtToken = authorization.substring(7);
-		boolean tokenValid = applicantService.isValid(jwtToken);
+		boolean tokenValid = userService.tokenValid(jwtToken);
 		if (tokenValid)
 			return "{\"validToken\" : \"true\"}";
 		else
 			return "{\"validToken\" : \"false\"}";
 	}
 
+	/**
+	 * Handles a user's request to login.
+	 * @param userLoginCredentials, the login credentials
+	 * @return if credentials are valid: JWT
+	 * @throws Exception thrown if credentials are invalid.
+	 */
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception {
 		try {
-			return "{\"token\" : \"" + applicantService.login(userLoginCredentials) + "\"}";
+			return "{\"token\" : \"" + userService.login(userLoginCredentials) + "\"}";
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
 	}
 
+	/**
+	 * Handles a user's request to register.
+	 * @param user, the user.
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
-	public @ResponseBody void processMessage(@RequestBody User user) throws Exception {
+	public @ResponseBody void register(@RequestBody User user) throws Exception {
 		try {
-			applicantService.register(user);
+			userService.register(user);
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}

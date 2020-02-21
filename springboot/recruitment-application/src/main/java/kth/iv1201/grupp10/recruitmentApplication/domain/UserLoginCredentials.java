@@ -2,6 +2,11 @@ package kth.iv1201.grupp10.recruitmentApplication.domain;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Siavash
+ * Represents the user login credentials.
+ * Is used for parsing a JSON object that holds login credentials.
+ */
 @Component
 public class UserLoginCredentials {
 	private String email;

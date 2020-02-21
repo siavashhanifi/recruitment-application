@@ -8,6 +8,11 @@ import javax.persistence.Table;
 
 import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 
+/**
+ * @author Siavash
+ * Represents a person-table in the relational database.
+ * Used with to store and load from the database using jpa.
+ */
 @Entity
 @Table(name="person")
 public class UserEntity {
