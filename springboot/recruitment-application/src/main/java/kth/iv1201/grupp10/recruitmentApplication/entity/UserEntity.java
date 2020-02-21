@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.util.DigestUtils;
+
 import kth.iv1201.grupp10.recruitmentApplication.domain.User;
 
 /**
@@ -41,7 +43,7 @@ public class UserEntity {
 		this.surname = user.getSurname();
 		this.ssn = user.getSsn();
 		this.email = user.getEmail();
-		this.password = user.getPassword();
+		this.password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
 		this.role_id = user.getRole_id();
 		this.username = user.getUsername();
 	}

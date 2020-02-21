@@ -2,6 +2,8 @@ package kth.iv1201.grupp10.recruitmentApplication.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
+
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
 import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
 
@@ -25,8 +27,9 @@ public class CredentialValidator {
 		String email = userLoginCredentials.getEmail();
 		String password = userLoginCredentials.getPassword();
 		if(emailRegistered(email)) {
+			String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
 			UserEntity userEntity = userRepository.findByEmail(email);
-			if(password.compareTo(userEntity.getPassword()) == 0)
+			if(md5Password.compareTo(userEntity.getPassword()) == 0)
 				return true;
 		}
 		return false;
