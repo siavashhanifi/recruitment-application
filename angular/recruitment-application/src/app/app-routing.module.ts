@@ -7,6 +7,10 @@ import { ApplicationListComponent } from './components/application-list/applicat
 import { AuthGuard } from './auth.guard';
 
 
+// Module repsonsible for handling frontend routing by linking the possible paths to respective component.
+// The list 'routes' contains all possible routes. 'login' redirects to the LoginComponent etc.
+// AuthGuard (@see ./auth.guard.ts) is used for blocking non authorized users from viewing the pages which
+// have a restiction related to it.
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
