@@ -40,19 +40,19 @@ run `npm install -g @anglar/cli`
 
 A step by step series of examples that tell you how to get a development env running
 
-Clone or fork this repository to a local directory 
+#### Clone or fork this repository to a local directory 
 
 ```
 Copy http or ssh address and clone the repository to your local environment:
 ```
-```
-git clone https://github.com/siavashhanifi/iv1201.git 
-```
-```
 
-```
+run
 
-And repeat
+`git clone https://github.com/siavashhanifi/iv1201.git` or 
+
+` git clone git@github.com:siavashhanifi/iv1201.git `
+
+Installing dependencies on frontend
 
 ```
 until finished
