@@ -1,12 +1,3 @@
-## Installation
-
-The Angular frontend needs Node package manager installed. Navigate to the root directory of the Angular application and run `npm install`. To enable [Angular CLI](https://github.com/angular/angular-cli), run `npm install @angular/cli`.
-The spring boot backend needs Maven installed. Navigate to the root directory of the Spring boot application and run `mvn install`.
-
-## Deployment
-
-To deploy the application locally, navigate to the root directory of the Angular application and run `ng build --prod`. The compiled source code is found in target directory `.dist`. Copy the all contents of `.dist`, except `index.html`, and paste it into `/springboot/recruitment-application/src/main/resources/static`. Copy `index.html` in `.dist` and paste it into `/springboot/recruitment-application/src/main/resources/templates`. From the Spring boot root directory, run `mvn package`, navigate to `./target` and run `java -jar recruitment-application-iv1201.0.0.1.war`, and the application will be live at `http://localhost:8080`.
-
 # Spring boot/Maven & Angular Web Application for Recruitment Handling
 
 This project was created as a part of IV1201-Design of Global Applications course at The Royal Institute of Technology 2020.
@@ -24,15 +15,15 @@ Java JDK:
 
 `Follow instructions for downloading and installation at` [Oracle's download site](https://www.oracle.com/java/technologies/javase-downloads.html)
 
-Apache Maven:
+#### Apache Maven:
 
 `Follow instructions at` [Maven official site](https://maven.apache.org/install.html)
 
-Node.js:
+#### Node.js:
 
 `Follow instructions for downloading and installing at` [Node.js download site](https://nodejs.org/en/)
 
-Angular CLI:
+#### Angular CLI:
 
 run `npm install -g @anglar/cli`
 
@@ -40,7 +31,7 @@ run `npm install -g @anglar/cli`
 
 A step by step series of examples that tell you how to get a development env running
 
-#### Clone or fork this repository to a local directory 
+#### Clone or fork this repository to a local directory: 
 
 ```
 Copy http or ssh address and clone the repository to your local environment:
@@ -52,13 +43,47 @@ run
 
 ` git clone git@github.com:siavashhanifi/iv1201.git `
 
-Installing dependencies on frontend
+#### Installing frontend dependencies:
 
-```
-until finished
-```
+From ```iv1201/angular/recruitment-application/``` run:
 
-End with an example of getting some data out of the system or using it for a little demo
+`
+npm install
+`
+
+#### Installing backend dependencies: 
+
+From ```iv1201/springboot/recruitment-application``` run:
+
+`
+mvn install
+`
+
+#### Build forntend and include compiled code in backend resources:
+
+From ```iv1201/angular/recruitment-application```run:
+
+`
+ng build --prod
+`
+
+Copy all files from ```iv1201/angular/recruitment-application/dist```
+
+Paste the files into ```iv1201/springboot/recruitment-application/src/main/resources/static``` except `index.html`
+
+Past `index.html` into ```iv1201/springboot/recruitment-application/src/main/resources/templates```
+
+#### Build backend and run application localy:
+
+Navigate to ```iv1201/springboot/recruitment-application``` and run:
+
+`mvn package`
+
+Navigate to ```iv1201/springboot/recruitment-application/target``` and run:
+
+`java -jar recruitment-application-0.0.1.war`
+
+You will find the application at `http://localhost:8080`
 
 ## Running the tests
 
