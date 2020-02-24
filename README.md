@@ -10,6 +10,6 @@ The spring boot backend needs Maven installed. Navigate to the root directory of
 
 ## Deployment
 
-To deploy the application locally, navigate to the root directory of the Angular application and run `ng build --prod`. The compiled source code is found in target directory `.dist`. Copy the all contents of `.dist`, except `index.html`, and paste it into 
+To deploy the application locally, navigate to the root directory of the Angular application and run `ng build --prod`. The compiled source code is found in target directory `.dist`. Copy the all contents of `.dist`, except `index.html`, and paste it into `/springboot/recruitment-application/src/main/resources/static`. Copy `index.html` in `.dist` and paste it into `/springboot/recruitment-application/src/main/resources/templates`. From the Spring boot root directory, run `mvn package`, navigate to `./target` and run `java -jar recruitment-application-iv1201.0.0.1.war`, and the application will be live at `http://localhost:8080`.
 
 
