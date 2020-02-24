@@ -2,6 +2,9 @@ package kth.iv1201.grupp10.recruitmentApplication.jwt;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import io.jsonwebtoken.Jwts;
 
 /**
@@ -9,6 +12,7 @@ import io.jsonwebtoken.Jwts;
  * Handles the validation of JWTs.
  */
 @Component
+@Transactional(propagation = Propagation.REQUIRED)
 public class JwtValidator {
 
 	@Value("${jwt.secret}")

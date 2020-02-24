@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.jsonwebtoken.*;
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
@@ -14,6 +16,7 @@ import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
  * Handles the generation of JWTs.
  */
 @Component
+@Transactional(propagation=Propagation.REQUIRED)
 public class JwtGenerator {
 
 	private static final int JWT_TOKEN_VALIDITY = 5 * 60 * 60;

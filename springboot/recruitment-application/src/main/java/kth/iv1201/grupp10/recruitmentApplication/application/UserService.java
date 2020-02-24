@@ -19,7 +19,7 @@ import kth.iv1201.grupp10.recruitmentApplication.repository.UserRepository;
  * JwtValidator and userRepository.
  */
 @Service
-@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 public class UserService {
 
 	@Autowired
