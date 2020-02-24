@@ -43,7 +43,13 @@ A step by step series of examples that tell you how to get a development env run
 Clone or fork this repository to a local directory 
 
 ```
-Copy http or ssh address and clone the repository to your local environment 
+Copy http or ssh address and clone the repository to your local environment:
+```
+```
+git clone https://github.com/siavashhanifi/iv1201.git 
+```
+```
+
 ```
 
 And repeat
