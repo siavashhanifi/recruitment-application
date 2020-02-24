@@ -87,54 +87,49 @@ You will find the application at `http://localhost:8080`
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+### Unit and integration tests
 
-### Break down into end to end tests
-
-Explain what these tests test and why
+To run unit and integration tests in Angular, run:
 
 ```
-Give an example
+ng test
 ```
 
-### And coding style tests
+The test results will be presented in the terminal, and a more well formated report will automatically be opened in a chrome brwoser.
 
-Explain what these tests test and why
+
+### End to end tests
+
+To run end to end tests in Angular, run:
 
 ```
-Give an example
+ng e2e
+```
+
+### Coding style tests
+
+To run code style / code convetion tests in Angular, run:
+
+```
+ng lint
 ```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+The application is ready to be deployed on a Azure web server using an Azure SQL-database. CI/CD is implemented using `azure-pipeline.yml` which is triggered at every push to master branch.
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [Angular](https://angular.io/docs) - The web framework used
+* [Spring and Spring Boot](https://spring.io/projects/spring-boot) - The backend framework used
+* [Node.js](https://nodejs.org/en/) - Frontend Dependency Management
+* [Maven](https://maven.apache.org/) - Backend Dependency Management
+* [Azure SQL](https://azure.microsoft.com/en-us/services/sql-database/) - Database
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Siavash Hanifi** - [siavashhanifi](https://github.com/siavashhanifi)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Björn Fredriksson** - [bfredr](https://github.com/bfredr)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Sebastian Domar Bolmstam** - [sbbolmstam](https://github.com/sdbolmstam)
