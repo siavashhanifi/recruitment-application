@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kth.iv1201.grupp10.recruitmentApplication.application.UserService;
-import kth.iv1201.grupp10.recruitmentApplication.domain.User;
+import kth.iv1201.grupp10.recruitmentApplication.domain.UserRegistrationValues;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 
 /**
@@ -70,7 +70,7 @@ public class RequestController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
-	public @ResponseBody void register(@RequestBody User user) throws Exception {
+	public @ResponseBody void register(@RequestBody UserRegistrationValues user) throws Exception {
 		try {
 			userService.register(user);
 		} catch (Exception e) {

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import kth.iv1201.grupp10.recruitmentApplication.domain.CredentialValidator;
-import kth.iv1201.grupp10.recruitmentApplication.domain.User;
+import kth.iv1201.grupp10.recruitmentApplication.domain.UserRegistrationValues;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
 import kth.iv1201.grupp10.recruitmentApplication.jwt.JwtGenerator;
@@ -34,7 +34,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	private boolean alreadyRegistered(User user){
+	private boolean alreadyRegistered(UserRegistrationValues user){
 		return this.userRepository.findByEmail(user.getEmail()) != null;
 	}
 
@@ -59,7 +59,7 @@ public class UserService {
 	 * @param user, the user.
 	 * @throws Exception, thrown if user already is registered.
 	 */
-	public void register(User user) throws Exception {
+	public void register(UserRegistrationValues user) throws Exception {
 		if (alreadyRegistered(user)) {
 			throw new Exception("already registered");
 		} else {

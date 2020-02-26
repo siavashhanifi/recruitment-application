@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.util.DigestUtils;
 
-import kth.iv1201.grupp10.recruitmentApplication.domain.User;
+import kth.iv1201.grupp10.recruitmentApplication.domain.UserRegistrationValues;
 
 /**
  * @author Siavash
@@ -30,7 +32,9 @@ public class UserEntity {
 	@Column(unique = true)
 	private String email;
 	private String password;
-	private int role_id;
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private RoleEntity role;
 	@Column(unique = true)
 	private String username;
 	
@@ -38,13 +42,13 @@ public class UserEntity {
 
 	}
 	
-	public UserEntity(User user) {
+	public UserEntity(UserRegistrationValues user){
 		this.name = user.getName();
 		this.surname = user.getSurname();
 		this.ssn = user.getSsn();
 		this.email = user.getEmail();
 		this.password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
-		this.role_id = user.getRole_id();
+		this.role = new RoleEntity(user.getRole_id());
 		this.username = user.getUsername();
 	}
 	/**
@@ -98,14 +102,14 @@ public class UserEntity {
 	/**
 	 * @return the role_id
 	 */
-	public int getRole_id() {
-		return role_id;
+	public RoleEntity getRole() {
+		return role;
 	}
 	/**
 	 * @param role_id the role_id to set
 	 */
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
+	public void setRole(RoleEntity role) {
+		this.role = role;
 	}
 	/**
 	 * @return the password

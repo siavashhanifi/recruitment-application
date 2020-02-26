@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Is used for parsing a JSON object that represents a user.
  */
 @Component
-public class User {
+public class UserRegistrationValues {
 	private String name;
 	private String surname;
 	private String ssn;
