@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { AuthGuard } from './auth.guard';
 import { ApplicationListComponent } from './components/application-list/application-list.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 // Entry point of all imports and providers needed for the web application.
 @NgModule({
@@ -28,7 +29,8 @@ import { ApplicationListComponent } from './components/application-list/applicat
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot()
   ],
   providers: [AuthService, AuthGuard,
     {
