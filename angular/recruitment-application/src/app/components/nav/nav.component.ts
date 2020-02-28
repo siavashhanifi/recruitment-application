@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../auth.service';
 
 /**
@@ -17,7 +17,11 @@ import { AuthService } from '../../auth.service';
 
 export class NavComponent implements OnInit {
 
+  @Output() langChangedEventEmitter = new EventEmitter<string>();
 
+  public changeLang(lang: string){
+    this.langChangedEventEmitter.emit(lang);
+  }
   /**
    * Creates an instance of nav component.
    * @param authService instance of the service responsible for handling authentication.

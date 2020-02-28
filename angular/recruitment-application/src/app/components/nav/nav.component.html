@@ -9,19 +9,25 @@ only showing links that the user is authorizaed to visit -->
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="about" routerLinkActive="active">About</a>
+        <a class="nav-link" routerLink="about" routerLinkActive="active">{{'About' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="register" routerLinkActive="active">Register</a>
+        <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="register" routerLinkActive="active">{{'Register' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="login" routerLinkActive="active">Login</a>
+        <a class="nav-link" *ngIf="!authService.loggedIn()" routerLink="login" routerLinkActive="active">{{'Login' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="authService.loggedIn()" routerLink="appList" routerLinkActive="active">Applications</a>
+        <a class="nav-link" *ngIf="authService.loggedIn()" routerLink="appList" routerLinkActive="active">{{'Applications' | translate}}</a>
       </li>
       <li  class="nav-item">
-        <a class="nav-link disabled" style="cursor: pointer" *ngIf="authService.loggedIn()" (click)="authService.logout()" routerLinkActive="active">Logout</a>
+        <a class="nav-link disabled" style="cursor: pointer" *ngIf="authService.loggedIn()" (click)="authService.logout()" routerLinkActive="active">{{'Logout' | translate}}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="changeLang('se')">Swedish/Svenska</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="changeLang('en')">English/Engelska</a>
       </li>
     </ul>
   </div>

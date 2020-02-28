@@ -5,51 +5,51 @@
     <div class="wrap-contact3">
       <form [formGroup]="registerForm" class="contact3-form validate-form" role="form" (submit)="register()">
         <span class="contact3-form-title">
-          Register
+          {{'Register' | translate}}
         </span>
 
         <div class="wrap-input3 validate-input" data-validate = "First name is required">
-          <input formControlName="name" class="input3" type="text" id="name" name="name" [(ngModel)]="credentials.name" placeholder="First Name" required/>
-          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched || submitted)">First name is required</div>
+          <input formControlName="name" class="input3" type="text" id="name" name="name" [(ngModel)]="credentials.name" placeholder="{{'First name:' | translate}}" required/>
+          <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched || submitted)">{{'First name is required' | translate}}</div>
           <span class="focus-input3"></span>
         </div>
 
         <div class="wrap-input3 validate-input" data-validate = "Last name is required">
-          <input formControlName="surname" class="input3" type="text" id="surname" name="surname" [(ngModel)]="credentials.surname" placeholder="Last Name" required/>
-          <div *ngIf="f.surname.invalid && (f.surname.dirty || f.surname.touched || submitted)">Last name is required</div>
+          <input formControlName="surname" class="input3" type="text" id="surname" name="surname" [(ngModel)]="credentials.surname" placeholder="{{'Last name:' | translate}}"required/>
+          <div *ngIf="f.surname.invalid && (f.surname.dirty || f.surname.touched || submitted)">"{{'Last name is required:' | translate}}"</div>
           <span class="focus-input3"></span>
         </div>
 
         <div class="wrap-input3 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-          <input formControlName="email" class="input3" type="email" name="email"  id="email" [(ngModel)]="credentials.email" placeholder="Your Email" required>
+          <input formControlName="email" class="input3" type="email" name="email"  id="email" [(ngModel)]="credentials.email" placeholder="{{'Your email:' | translate}}" required>
           <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched || submitted)">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.email">Valid email is required</div>
+            <div *ngIf="f.email.errors.required">{{'Email is required' | translate}}</div>
+            <div *ngIf="f.email.errors.email">{{'Valid Email is required' | translate}}</div>
           </div>
           <span class="focus-input3"></span>
         </div>
 
         <div class="wrap-input3 validate-input" data-validate = "Username is required">
-          <input formControlName="username" class="input3" type="text" id="username" name="username" [(ngModel)]="credentials.username" placeholder="Your Username" required/>
-          <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched || submitted)"> Username is required</div>
+          <input formControlName="username" class="input3" type="text" id="username" name="username" [(ngModel)]="credentials.username" placeholder="{{'Your username' | translate}}" required/>
+          <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched || submitted)">{{'Username is required' | translate}}</div>
           <span class="focus-input3"></span>
         </div>
 
         <div class="wrap-input3 validate-input" data-validate = "Password is required">
-          <input formControlName="password" class="input3" type="password" id="password" name="password" [(ngModel)]="credentials.password" placeholder="Your Password" required/>
-          <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched || submitted)">Password is required</div>
+          <input formControlName="password" class="input3" type="password" id="password" name="password" [(ngModel)]="credentials.password" placeholder="{{'Your password' | translate}}" required/>
+          <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched || submitted)">{{'Password required' | translate}}</div>
           <span class="focus-input3"></span>
         </div>
 
         <div class="wrap-input3 validate-input" data-validate = "SSN is required">
-          <input formControlName="ssn" class="input3" type="text" id="ssn" name="ssn" [(ngModel)]="credentials.ssn" placeholder="Your Social Security Number" required/>
-          <div *ngIf="f.ssn.invalid && (f.ssn.dirty || f.ssn.touched || submitted)">SSN is required</div>
+          <input formControlName="ssn" class="input3" type="text" id="ssn" name="ssn" [(ngModel)]="credentials.ssn" placeholder="{{'Your SSN' | translate}}" required/>
+          <div *ngIf="f.ssn.invalid && (f.ssn.dirty || f.ssn.touched || submitted)">{{'SSN is required' | translate}}</div>
           <span class="focus-input3"></span>
         </div>
 
         <div class="container-contact3-form-btn">
           <button class="contact3-form-btn">
-            Submit
+            {{'Submit' | translate}}
           </button>
         </div>
       </form>
