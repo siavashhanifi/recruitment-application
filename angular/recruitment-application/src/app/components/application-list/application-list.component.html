@@ -1,3 +1,28 @@
 <!-- View all posted applications (Only allowed by recruiters) -->
 
-<p>application-list works!</p>
+<!-- View all posted applications (Only allowed by recruiters) -->
+
+<table  border="1" align='center'>
+  <thead >
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Social Sercurity Number</th>
+      <th scope="col">Available</th>
+      <th scope="col" >Competence</th>
+      <th scope="col">Years of Experience</th>
+    </tr>
+  </thead>
+  <tbody>
+          <tr *ngFor="let a of applications">
+            <td>{{a.applicantName}}</td>
+            <td>{{a.applicantSsn}}</td>
+            <td>
+              <tr *ngFor="let av of a.availability">{{av.fromDate | date: 'shortDate'}}-{{av.toDate | date: 'shortDate'}}</tr>
+            </td>
+            <td>
+                <tr *ngFor="let c of a.competenceProfile.competence">{{c.name}}</tr>
+            </td>
+            <td>{{a.competenceProfile.yearsOfExperience}}</td>
+            </tr>
+          </tbody>
+        </table>
