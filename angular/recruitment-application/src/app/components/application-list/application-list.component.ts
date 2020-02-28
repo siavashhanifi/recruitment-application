@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Application } from 'src/app/enteties/application.entety';
+import { ApplicationService } from 'src/app/application.service';
 
 /**
  * Component ApplicationListComponent representing a page for listing all posted applications.
@@ -14,9 +16,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicationListComponent implements OnInit {
 
-  constructor() { }
+  applications: Application[];
+
+  constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
+    this.applications = this.applicationService.findAll();
   }
 
 }
+

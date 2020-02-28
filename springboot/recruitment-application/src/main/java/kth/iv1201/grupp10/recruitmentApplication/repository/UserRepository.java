@@ -12,4 +12,6 @@ import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
 @Transactional(propagation = Propagation.MANDATORY)
 public interface UserRepository extends JpaRepository<UserEntity, Integer>{
 	public UserEntity findByEmail(String email);
+	public UserEntity findByUsername(String username);
+	public UserEntity findBySsn(String ssn);
 }
