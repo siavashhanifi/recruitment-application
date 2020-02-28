@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule} from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -27,7 +27,8 @@ import { ApplicationListComponent } from './components/application-list/applicat
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthService, AuthGuard,
     {
