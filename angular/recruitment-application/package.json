@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "extract": "ngx-translate-extract --input ./src/app/ --output ./src/assets/i18n/{en,se}.json --clean --sort --format namespaced-json"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +21,9 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@auth0/angular-jwt": "^4.0.0",
+    "@biesbjerg/ngx-translate-extract": "^4.2.0",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^4.0.0",
     "jwt-decode": "^2.2.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.4",

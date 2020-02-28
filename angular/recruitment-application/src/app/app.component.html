@@ -1,5 +1,5 @@
 <!-- html tag for the navigation bar. Reffered by the component selector -->
-<app-nav></app-nav>
+<app-nav (langChangedEventEmitter)="updateLanguage($event)"></app-nav>
 
 <!-- html tag for custom pages reachable through the router module. The routing module defines
 which component should be referenced by the tag at any given time -->
