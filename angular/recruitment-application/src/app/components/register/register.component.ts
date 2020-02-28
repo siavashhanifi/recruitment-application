@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
     role_id: "1"
   };
 
+  submitted
   registerForm: FormGroup;
 
   /**
@@ -49,6 +50,7 @@ export class RegisterComponent implements OnInit {
    * Runs on initialization and creates a form for registration. Form controls are also created for form validation.
    */
   ngOnInit() {
+    this.submitted = false;
     this.registerForm = new FormGroup({
       name: new FormControl(this.credentials.name, [Validators.required]),
       surname: new FormControl(this.credentials.surname, [Validators.required]),
@@ -71,11 +73,13 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
-   * Method called when a user submits a registration form. Calls the registration handler in authservice
+   * Method called when a user submits a registration form. If the registration form is valid, a call is made to the registration handler in authservice
    * (@see ../../auth.service#register()). Either redirects to login page at successful registration, or
    * alerts the user on potential errors.
    */
   register() {
+    this.submitted = true;
+    if(this.registerForm.invalid) return;
   
     this.auth.register(this.credentials).subscribe(
       res => this.router.navigateByUrl("login"),
