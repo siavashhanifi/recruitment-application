@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kth.iv1201.grupp10.recruitmentApplication.application.UserService;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserRegistrationValues;
+import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidLoginException;
+import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidRegistrationException;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 
 /**
@@ -56,12 +58,19 @@ public class RequestController {
 	 * @throws Exception thrown if credentials are invalid.
 	 */
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
-	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws Exception {
+	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws InvalidLoginException, Exception {
 		try {
 			return "{\"token\" : \"" + userService.login(userLoginCredentials) + "\"}";
-		} catch (Exception e) {
-			throw new Exception(e.getMessage());
-		}
+		} catch (InvalidLoginException e) {
+			if (e.getMessage().equals("invalid email")) {
+				throw new InvalidLoginException("Invalid credentials: Incorrect email");
+			} else {
+				throw new InvalidLoginException("Invalid credentials: Incorrect password");
+			}
+		} /*catch (Exception e) {
+			throw new Exception(e.toString());
+			throw new Exception("Server error: Something went wrong.. Try again in a while.");
+		}*/
 	}
 
 	/**
@@ -70,11 +79,19 @@ public class RequestController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
-	public @ResponseBody void register(@RequestBody UserRegistrationValues user) throws Exception {
+	public @ResponseBody void register(@RequestBody UserRegistrationValues user) throws InvalidRegistrationException, Exception {
 		try {
 			userService.register(user);
+		} catch (InvalidRegistrationException e) {
+			if (e.getMessage().equals("invalid email")) {
+				throw new InvalidRegistrationException("The entered email (" + user.getEmail() + ") has already been registered.");
+			} else if (e.getMessage().equals("invalid username")) {
+				throw new InvalidRegistrationException("The entered username (" + user.getUsername() + ") has already been registered.");
+			} else {
+				throw new InvalidRegistrationException("The entered social security number (" + user.getSsn() + ") has already been registered.");
+			}
 		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+			throw new Exception("Server error: Something went wrong.. Try again in a while.");
 		}
 
 	}
