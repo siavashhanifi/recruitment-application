@@ -27,21 +27,34 @@ public class CredentialValidator {
 	 * @param userLoginCredentials
 	 * @return
 	 */
-	public boolean validCredentials(UserLoginCredentials userLoginCredentials) {
+	public boolean validCredentials(UserLoginCredentials userLoginCredentials) throws InvalidLoginException {
 		String email = userLoginCredentials.getEmail();
 		String password = userLoginCredentials.getPassword();
 		if(emailRegistered(email)) {
-			String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
-			UserEntity userEntity = userRepository.findByEmail(email);
-			if(md5Password.compareTo(userEntity.getPassword()) == 0)
+			if(validPassword(email, password)) {
 				return true;
+			}
 		}
 		return false;
 	}
 	
-	private boolean emailRegistered(String email) {
-		if(userRepository.findByEmail(email) == null) return false;
-		else return true;
+	private boolean emailRegistered(String email) throws InvalidLoginException {
+		if(userRepository.findByEmail(email) == null) {
+			throw new InvalidLoginException("invalid email");
+		}
+		else {
+			return true;
+		}
+	}
+
+	private boolean validPassword(String email, String password) throws InvalidLoginException {
+		String md5Password = DigestUtils.md5DigestAsHex(password.getBytes());
+		UserEntity userEntity = userRepository.findByEmail(email);
+		if(md5Password.compareTo(userEntity.getPassword()) == 0) {
+			return true;
+		} else {
+			throw new InvalidLoginException("invalid password");
+		}
 	}
 	
 }

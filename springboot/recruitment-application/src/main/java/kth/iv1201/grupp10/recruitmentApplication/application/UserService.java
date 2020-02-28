@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import kth.iv1201.grupp10.recruitmentApplication.domain.CredentialValidator;
+import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidLoginException;
+import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidRegistrationException;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserRegistrationValues;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 import kth.iv1201.grupp10.recruitmentApplication.entity.UserEntity;
@@ -34,8 +36,16 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	private boolean alreadyRegistered(UserRegistrationValues user){
-		return this.userRepository.findByEmail(user.getEmail()) != null;
+	private boolean uniqueRegistration(UserRegistrationValues user) throws InvalidRegistrationException {
+		if (this.userRepository.findByEmail(user.getEmail()) != null) {
+			throw new InvalidRegistrationException("invalid email");
+		} else if (this.userRepository.findByUsername(user.getUsername()) != null) {
+			throw new InvalidRegistrationException("invalid username");
+		} else if (this.userRepository.findBySsn(user.getSsn()) != null) {
+			throw new InvalidRegistrationException("invalid ssn");
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -44,13 +54,14 @@ public class UserService {
 	 * @return if credentials are valid: JWT
 	 * @throws Exception, thrown if credentials invalid.
 	 */
-	public String login(UserLoginCredentials userLoginCredentials) throws Exception {
+	public String login(UserLoginCredentials userLoginCredentials) throws InvalidLoginException {
 		boolean validCredentials = credentialValidator.validCredentials(userLoginCredentials);
-		if (!validCredentials) {
-			throw new Exception("Invalid credentials");
-		} else {
+		if (validCredentials) {
 			UserEntity userEntity = this.userRepository.findByEmail(userLoginCredentials.getEmail());
+			System.out.println(userEntity.getEmail());
 			return jwtGenerator.generateToken(userEntity);
+		} else {
+			return "";
 		}
 	}
 
@@ -59,14 +70,11 @@ public class UserService {
 	 * @param user, the user.
 	 * @throws Exception, thrown if user already is registered.
 	 */
-	public void register(UserRegistrationValues user) throws Exception {
-		if (alreadyRegistered(user)) {
-			throw new Exception("already registered");
-		} else {
+	public void register(UserRegistrationValues user) throws InvalidRegistrationException {
+		if (uniqueRegistration(user)) {
 			UserEntity userEntity = new UserEntity(user);
 			this.userRepository.save(userEntity);
 		}
-
 	}
 
 	/**
