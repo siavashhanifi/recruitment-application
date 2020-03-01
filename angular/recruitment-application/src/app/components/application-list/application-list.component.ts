@@ -21,7 +21,9 @@ export class ApplicationListComponent implements OnInit {
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
-    this.applications = this.applicationService.findAll();
+    this.applicationService.findAll().subscribe( res => {
+      this.applications = res;
+    });
   }
 
 }
