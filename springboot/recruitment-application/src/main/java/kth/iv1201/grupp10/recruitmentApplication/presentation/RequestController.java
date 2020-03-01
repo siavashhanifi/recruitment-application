@@ -14,6 +14,7 @@ import kth.iv1201.grupp10.recruitmentApplication.application.UserService;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserRegistrationValues;
 import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidLoginException;
 import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidRegistrationException;
+import kth.iv1201.grupp10.recruitmentApplication.domain.MockApplications;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserLoginCredentials;
 
 /**
@@ -26,6 +27,9 @@ public class RequestController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	MockApplications mockApplication;
 
 	/**
 	 * Presents the index-page when "/" is requested by the client.
@@ -94,6 +98,18 @@ public class RequestController {
 			throw new Exception("Server error: Something went wrong.. Try again in a while.");
 		}
 
+	}
+
+	@RequestMapping(value = "/api/content/applications", method = RequestMethod.GET)
+	public @ResponseBody String applications(@RequestHeader("Authorization") String authorization) {
+		String jwtToken = authorization.substring(7);
+		boolean tokenValid = userService.tokenValid(jwtToken);
+		if (tokenValid){
+			return this.mockApplication.getApplications();
+		} else {
+			return "";
+		}
+		
 	}
 
 }
