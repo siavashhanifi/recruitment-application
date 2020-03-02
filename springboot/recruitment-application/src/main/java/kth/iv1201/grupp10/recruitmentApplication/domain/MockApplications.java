@@ -1,7 +1,5 @@
 package kth.iv1201.grupp10.recruitmentApplication.domain;
 
-import java.util.Date;
-
 import org.springframework.stereotype.Component;
 
 @Component
