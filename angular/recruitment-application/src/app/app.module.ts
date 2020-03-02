@@ -28,8 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ApplicationListComponent,
-    ApplicationService
+    ApplicationListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
   })
   ],
-  providers: [AuthService, AuthGuard,
+  providers: [AuthService, AuthGuard, ApplicationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

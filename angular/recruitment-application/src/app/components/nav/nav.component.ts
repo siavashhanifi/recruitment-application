@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
    * Emits a change of language on user inteface
    * @param lang (swedish/english)
    */
-  public changeLang(lang: string){
+  public changeLang(lang: string) {
     this.langChangedEventEmitter.emit(lang);
   }
   /**
