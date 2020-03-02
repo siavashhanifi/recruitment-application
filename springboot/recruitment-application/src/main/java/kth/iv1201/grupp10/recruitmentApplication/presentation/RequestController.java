@@ -59,7 +59,8 @@ public class RequestController {
 	 * Handles a user's request to login.
 	 * @param userLoginCredentials, the login credentials
 	 * @return if credentials are valid: JWT
-	 * @throws Exception thrown if credentials are invalid.
+	 * @throws InvalidLoginCredentials thrown if credentials is invalid
+	 * @throws Exception thrown at other errors
 	 */
 	@RequestMapping(value = "/api/auth/login", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody UserLoginCredentials userLoginCredentials) throws InvalidLoginException, Exception {
@@ -71,16 +72,16 @@ public class RequestController {
 			} else {
 				throw new InvalidLoginException("Invalid credentials: Incorrect password");
 			}
-		} /*catch (Exception e) {
-			throw new Exception(e.toString());
+		} catch (Exception e) {
 			throw new Exception("Server error: Something went wrong.. Try again in a while.");
-		}*/
+		}
 	}
 
 	/**
 	 * Handles a user's request to register.
 	 * @param user, the user.
-	 * @throws Exception
+	 * @throws InvalidRegistrationException if credentials is invalid
+	 * @throws Exception at other errors
 	 */
 	@RequestMapping(value = "/api/auth/register", method = RequestMethod.POST)
 	public @ResponseBody void register(@RequestBody UserRegistrationValues user) throws InvalidRegistrationException, Exception {
@@ -100,6 +101,11 @@ public class RequestController {
 
 	}
 
+	/**
+	 * Handels requests of applications listings
+	 * @param authorization the header tag holding jwt token
+	 * @return string representation of a JSON-object holding all applications if jwt is valid. Else emty string.
+	 */
 	@RequestMapping(value = "/api/content/applications", method = RequestMethod.GET)
 	public @ResponseBody String applications(@RequestHeader("Authorization") String authorization) {
 		String jwtToken = authorization.substring(7);
