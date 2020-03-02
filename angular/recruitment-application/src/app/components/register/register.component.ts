@@ -31,7 +31,14 @@ export class RegisterComponent implements OnInit {
     role_id: "1"
   };
 
-  submitted
+  /**
+   * submitted: Control boolean for form vaildation appearance.
+   */
+  submitted: boolean;
+
+  /**
+   * Register form of register component. Instance of FormGroup used for form validation.
+   */
   registerForm: FormGroup;
 
   /**
@@ -68,19 +75,22 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /**
+   * Getter function for getting the control settings used for validation, set in ngOnInit.
+   */
   get f() {
     return this.registerForm.controls;
   }
 
   /**
-   * Method called when a user submits a registration form. If the registration form is valid, a call is made to the registration handler in authservice
-   * (@see ../../auth.service#register()). Either redirects to login page at successful registration, or
-   * alerts the user on potential errors.
+   * Method called when a user submits a registration form. If the registration form is valid,
+   * a call is made to the registration handler in authservice (@see ../../auth.service#register()).
+   * Either redirects to login page at successful registration, or alerts the user on potential errors.
    */
   register() {
     this.submitted = true;
-    if(this.registerForm.invalid) return;
-  
+    if(this.registerForm.invalid) {return;}
+
     this.auth.register(this.credentials).subscribe(
       res => this.router.navigateByUrl("login"),
       err => {
