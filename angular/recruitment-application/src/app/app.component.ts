@@ -16,9 +16,9 @@ import 'rxjs/add/operator/finally';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'recruitment-application';  
+  title = 'recruitment-application';
 
-  public updateLanguage(lang){
+  public updateLanguage(lang: string) {
     this.translate.use(lang);
   }
 

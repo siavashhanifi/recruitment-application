@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
-import { AuthService } from "../../auth.service";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 /**
  * Component LoginComponent representing the login interface of the web application.
  * Component decorator containing selector, template url and style urls.
@@ -11,17 +11,27 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
  * The sytle url defines the stylesheets related to the component.
  */
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   /**
    * Credentials  of login component. Variables containing user input from a login-attempt.
    */
-  credentials = { email: "", password: "" };
-  submitted;
+  credentials = { email: '', password: '' };
+
+  /**
+   * submitted: Control boolean for form vaildation appearance.
+   */
+  submitted: boolean;
+
+  /**
+   * Login form of login component. Instance of FormGroup used for form validation.
+   */
   loginForm: FormGroup;
+
   /**
    * Creates an instance of login component.
    * @param http instance of HttpClient responsible for http communication with backend server
@@ -35,19 +45,20 @@ export class LoginComponent {
   ) {}
 
   /**
-   * Method called at a login attempt. If the login form is valid, a call is made to the login handler in authservice (@see ../../auth.service#login())
-   * and recieves an observable. If a valid response is returned, the token passed from backend is stored
-   * in the local storage (the user is logged in) and redirects to the main page.
+   * Method called at a login attempt. If the login form is valid, a call is made to the login handler in
+   * authservice (@see ../../auth.service#login()) and recieves an observable. If a valid response is
+   * returned, the token passed from backend is stored in the local storage (the user is logged in)
+   * and redirects to the main page.
    */
   login() {
     this.submitted = true;
-    if (this.loginForm.invalid) return;
+    if (this.loginForm.invalid) {return; }
 
     this.auth.login(this.credentials).subscribe(
       res => {
         console.log(res);
-        localStorage.setItem("token", res["token"]);
-        this.router.navigateByUrl("");
+        localStorage.setItem('token', res['token']);
+        this.router.navigateByUrl('');
       },
       err => {
         console.log(err);
@@ -56,10 +67,16 @@ export class LoginComponent {
     );
   }
 
+  /**
+   * Getter function for getting the control settings used for validation, set in ngOnInit.
+   */
   get f() {
     return this.loginForm.controls;
   }
 
+  /**
+   * Method executed upon component initiation. Sets validation rules for the login form.
+   */
   ngOnInit() {
     this.submitted = false;
     this.loginForm = new FormGroup({

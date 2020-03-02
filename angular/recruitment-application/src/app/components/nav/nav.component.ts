@@ -17,9 +17,16 @@ import { AuthService } from '../../auth.service';
 
 export class NavComponent implements OnInit {
 
+  /**
+   * Event output for signaling language change
+   */
   @Output() langChangedEventEmitter = new EventEmitter<string>();
 
-  public changeLang(lang: string){
+  /**
+   * Emits a change of language on user inteface
+   * @param lang (swedish/english)
+   */
+  public changeLang(lang: string) {
     this.langChangedEventEmitter.emit(lang);
   }
   /**

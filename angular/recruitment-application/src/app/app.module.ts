@@ -14,7 +14,7 @@ import { AuthGuard } from './auth.guard';
 import { ApplicationListComponent } from './components/application-list/application-list.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
+import { ApplicationService } from './application.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -45,7 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
   })
   ],
-  providers: [AuthService, AuthGuard,
+  providers: [AuthService, AuthGuard, ApplicationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
