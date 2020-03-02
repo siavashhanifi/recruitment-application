@@ -38,6 +38,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       this.router.navigateByUrl('login');
+      window.alert('You are not authorized to view this resource, please login whit an authorized account to proceed');
       return false;
     }
   }

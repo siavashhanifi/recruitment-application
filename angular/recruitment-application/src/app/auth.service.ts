@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as jwt_decode from 'jwt-decode';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 /**
  * Class AuthService responsible for backend communication related to user authorization.
@@ -91,7 +91,6 @@ export class AuthService {
     console.log(valid);
     return valid;
   }
-
 
   /**
    * Method for checking if the user is logged in, only affecting fronend.

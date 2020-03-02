@@ -1,5 +1,6 @@
 package kth.iv1201.grupp10.recruitmentApplication.presentation;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kth.iv1201.grupp10.recruitmentApplication.application.UserService;
 import kth.iv1201.grupp10.recruitmentApplication.domain.UserRegistrationValues;
+import kth.iv1201.grupp10.recruitmentApplication.domain.AuthorizationException;
 import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidLoginException;
 import kth.iv1201.grupp10.recruitmentApplication.domain.InvalidRegistrationException;
 import kth.iv1201.grupp10.recruitmentApplication.domain.MockApplications;
@@ -40,6 +42,10 @@ public class RequestController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/**/{[path:[^\\.]*}")
+	public String redirect(){
+		return "forward:/";
+	}
 	/**
 	 * Handles the client's request to validate a JWT.
 	 * @param authorization, the header tag holding the JWT
@@ -47,12 +53,14 @@ public class RequestController {
 	 */
 	@GetMapping("/api/auth/validToken")
 	public @ResponseBody String authenticate(@RequestHeader("Authorization") String authorization) {
+		
 		String jwtToken = authorization.substring(7);
 		boolean tokenValid = userService.tokenValid(jwtToken);
 		if (tokenValid)
 			return "{\"validToken\" : \"true\"}";
 		else
 			return "{\"validToken\" : \"false\"}";
+		
 	}
 
 	/**
@@ -107,13 +115,13 @@ public class RequestController {
 	 * @return string representation of a JSON-object holding all applications if jwt is valid. Else emty string.
 	 */
 	@RequestMapping(value = "/api/content/applications", method = RequestMethod.GET)
-	public @ResponseBody String applications(@RequestHeader("Authorization") String authorization) {
+	public @ResponseBody String applications(@RequestHeader("Authorization") String authorization) throws AuthorizationException{
 		String jwtToken = authorization.substring(7);
 		boolean tokenValid = userService.tokenValid(jwtToken);
 		if (tokenValid){
 			return this.mockApplication.getApplications();
 		} else {
-			return "";
+			throw new AuthorizationException("You need to be authorized to view the applications, please sign in with a different account.");
 		}
 		
 	}
