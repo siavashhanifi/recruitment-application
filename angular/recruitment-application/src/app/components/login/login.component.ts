@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
-import { AuthService } from "../../auth.service";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 /**
  * Component LoginComponent representing the login interface of the web application.
  * Component decorator containing selector, template url and style urls.
@@ -11,16 +11,16 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
  * The sytle url defines the stylesheets related to the component.
  */
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
   /**
    * Credentials  of login component. Variables containing user input from a login-attempt.
    */
-  credentials = { email: "", password: "" };
+  credentials = { email: '', password: '' };
 
   /**
    * submitted: Control boolean for form vaildation appearance.
@@ -57,8 +57,8 @@ export class LoginComponent {
     this.auth.login(this.credentials).subscribe(
       res => {
         console.log(res);
-        localStorage.setItem("token", res["token"]);
-        this.router.navigateByUrl("");
+        localStorage.setItem('token', res['token']);
+        this.router.navigateByUrl('');
       },
       err => {
         console.log(err);

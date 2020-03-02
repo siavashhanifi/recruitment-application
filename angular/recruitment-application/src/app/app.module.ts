@@ -14,7 +14,7 @@ import { AuthGuard } from './auth.guard';
 import { ApplicationListComponent } from './components/application-list/application-list.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { ApplicationService } from './application.service'
+import { ApplicationService } from './application.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
