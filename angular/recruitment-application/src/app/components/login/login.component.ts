@@ -16,12 +16,22 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent {
+
   /**
    * Credentials  of login component. Variables containing user input from a login-attempt.
    */
   credentials = { email: "", password: "" };
-  submitted;
+
+  /**
+   * submitted: Control boolean for form vaildation appearance.
+   */
+  submitted: boolean;
+
+  /**
+   * Login form of login component. Instance of FormGroup used for form validation.
+   */
   loginForm: FormGroup;
+
   /**
    * Creates an instance of login component.
    * @param http instance of HttpClient responsible for http communication with backend server
@@ -35,13 +45,14 @@ export class LoginComponent {
   ) {}
 
   /**
-   * Method called at a login attempt. If the login form is valid, a call is made to the login handler in authservice (@see ../../auth.service#login())
-   * and recieves an observable. If a valid response is returned, the token passed from backend is stored
-   * in the local storage (the user is logged in) and redirects to the main page.
+   * Method called at a login attempt. If the login form is valid, a call is made to the login handler in
+   * authservice (@see ../../auth.service#login()) and recieves an observable. If a valid response is
+   * returned, the token passed from backend is stored in the local storage (the user is logged in)
+   * and redirects to the main page.
    */
   login() {
     this.submitted = true;
-    if (this.loginForm.invalid) return;
+    if (this.loginForm.invalid) {return; }
 
     this.auth.login(this.credentials).subscribe(
       res => {
@@ -56,10 +67,16 @@ export class LoginComponent {
     );
   }
 
+  /**
+   * Getter function for getting the control settings used for validation, set in ngOnInit.
+   */
   get f() {
     return this.loginForm.controls;
   }
 
+  /**
+   * Method executed upon component initiation. Sets validation rules for the login form.
+   */
   ngOnInit() {
     this.submitted = false;
     this.loginForm = new FormGroup({
